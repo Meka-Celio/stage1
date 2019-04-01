@@ -1,9 +1,7 @@
 @extends('template.template')
 
-<?php $action = $_GET['action']; ?>
 
-
-@section('title', 'Users')
+@section('title', 'Create User')
 @section('content')
 	<h2>Ajouter un utilisateur</h2>
 	<br>

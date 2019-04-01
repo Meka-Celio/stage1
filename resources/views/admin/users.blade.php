@@ -1,9 +1,65 @@
 @extends('template.template')
 
+
 @section('title', 'Users')
 @section('content')
 	<h2>Users</h2>
 	<br>
+	@if (Session::has('message'))
+	<div class="alert alert-success">
+		{{ Session::get('message') }}
+	</div>
+	@endif
+	
+	<!-- Formulaire Modal de creation de User -->
+	<div class="form-modal" id="createUserModal">
+		<div id="userForm" class="div-modal">
+			<h2 style="text-align:center;">Ajouter un utilisateur</h2>
+			<span class="icon-close">
+				<button class="btn btn-danger" onclick="closeNewUserModal()">X</button>
+			</span>
+			<br>
+			<form action="#" class="col-md-4 mx-auto" method="post" onsubmit="return false">
+				{{ csrf_field() }}
+				<fieldset>
+					<div class="form-group">
+						<input type="text" name="name" value="" placeholder="Nom..." class="form-control" required onkeyup="valideName(this)">
+						<div id="divErrorName"></div>
+					</div>
+					<div class="form-group">
+						<input type="email" name="email" value="" placeholder="E-Mail..." class="form-control" required>
+						<div id="divErrorMail"></div>
+					</div>
+					<div class="form-group">
+						<input type="password" name="password" value="" placeholder="Mot de passe..." class="form-control" required>
+						<div id="divErrorPassword"></div>
+					</div>
+					<div class="form-group">
+						<select name="fonction" id="fonction" class="form-control">
+							<option value="developpeur">Developpeur</option>
+							<option value="integrateur">Integrateur</option>
+							<option value="graphiste">Graphiste</option>
+							<option value="chef_projet">Chef de Projet</option>
+						</select>
+					</div>
+					<div class="form-check form-check-inline">
+						<input type="radio" name="role" value="admin" placeholder="" class="form-check-input" id="roleA">
+						<label for="roleA" class="form-check-label">Admin</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input type="radio" name="role" value="user" placeholder="" class="form-check-input" id="roleB" checked>
+						<label for="roleB" class="form-check-label">User</label>
+					</div>
+				</fieldset>
+				<br>
+				<input type="submit" name="" value="Créer un utilisateur" class="btn-info btn">
+				<input type="reset" name="" value="Annuler" class="btn btn-success">
+			</form>
+		</div>
+	</div>
+	<!-- Fin de formulaireModal -->
+
+	<!-- Tableau des utilisateurs -->
 	<div id="users">
 		<table class="table table-hover">
 			@if(isset($users))
@@ -19,7 +75,7 @@
 			</thead>
 			<tbody>
 				@foreach ($users as $user)
-					<tr>
+					<tr data-id="{{ $user->id }}" data-name="row-{{ $user->id }}">
 						<td>
 							<img src="{{ asset('img/user.png') }}" alt="" style="height: 60px; width: 60px;">
 						</td>
@@ -38,9 +94,7 @@
 						<td>{{ $user->role }}</td>
 						<td>
 							<a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-success">Modifier</a>
-							<a href="" class="btn btn-primary">
-								Supprimer
-							</a>
+							<button class="btn btn-info" onclick="showDeleteUserModal()">Supprimer</button>
 						</td>
 					</tr>
 				@endforeach
@@ -51,6 +105,21 @@
 		</table>		
 	</div>
 	<div>
-		<a href="{{ route('users.create', ['action' => 'create']) }}" class="btn btn-info">Ajouter un utilisateur</a>
+		<button class="btn btn-info" onclick="showNewUserModal()">Ajouter un utilisateur</button>
 	</div>
+
+	<!-- Pop Up de Suppression -->
+	<div class="dialog-modal" id="deleteUserModal">
+		<p>Voulez vous supprimer ?</p>
+		<div>
+			<!-- <button class="btn btn-success" value="oui" onclick="valideDelete(this)">Oui</button> -->
+			<form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="post" id="deleteUserForm">
+				{{ method_field('delete') }}
+				{{ csrf_field() }}
+				<input type="submit" name="" value="Oui" class="btn btn-success">
+			</form>
+			<button class="btn btn-info" value="non" onclick="valideDelete(this)">Non</button>
+		</div>
+	</div>
+	<!-- Fin de pop-up -->
 @endsection

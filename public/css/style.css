@@ -1,6 +1,43 @@
-.hidden{
-	display: none;
+.form-modal{
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 15px;
+	box-shadow: 1px 2px 5px 1px #000;
+	width: 80%;
+	position: fixed;
+	z-index: 100;
+	top: -800px;
+	transition: 0.4s;
 }
-.frame{
-	display: block;
+
+.form-modal > #userForm{
+	position: relative;
+}
+.icon-close{
+	position: absolute;
+	right: 0;
+}
+
+.dialog-modal{
+	height: 160px;
+	width: 310px;
+	background-color: #fff;
+	margin-top: 25px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 1px 2px 5px 1px #000;
+	margin-bottom: 25px;
+	border-radius: 8px;
+	position: fixed;	
+	bottom: -600px;
+	left: 40%;
+	z-index: 80;
+	transition: .7s;
+	font-size: 18px;
+}
+#deleteUserModal div form{
+	display: inline-block;
+	margin: 0 4px;
 }

@@ -273,7 +273,8 @@
   <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
 
   <!-- Own Scripts  -->
-  <script type="text/javascript" src="{{ asset('js/projets.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/modals.js') }}"></script>
+  <script src="{{ asset('js/userForm.js') }}"></script>
 
 </body>
 

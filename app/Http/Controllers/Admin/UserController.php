@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
     	
-			$users = DB::table('users')->get();
+		$users = DB::table('users')->get();
     	return view('admin.users', ['users' => $users]);
     }
 
@@ -38,8 +38,9 @@ class UserController extends Controller
     	]);
 
     	$users = DB::table('users')->get();
+    	Session::flash('message', 'User ajouté avec succès !');
 
-    	return view('admin.users', ['users' => $users]);
+    	return redirect(route('users.index', ['users' => $users]));
     }
 
     public function edit($id)
@@ -49,11 +50,11 @@ class UserController extends Controller
     	return view('admin.user.editUser', ['user' => $user]);
     }
 
-    public function update(UserRequest $request)
+    public function update(UserRequest $request, $id)
     {
     	$validated = $request->validated();
 
-    	$user = DB::table('users')->where('id', $_POST['id'])
+    	$user = DB::table('users')->where('id', $id)
     	->update([
     		'name'	=>	Input::get('name'),
     		'email' =>	Input::get('email'),
@@ -63,9 +64,16 @@ class UserController extends Controller
     	]);
 
     	$users = DB::table('users')->get();
+    	Session::flash('message', 'User modifié avec succès !');
 
-    	return view('admin.users', ['users' => $users]);
+    	return redirect(route('users.index', ['users' => $users]));
     }
 
-    
+    public function destroy($id)
+    {
+        $user = DB::table('users')->where('id', $id)->delete();
+        $users = DB::table('users')->get();
+        // Session::flash('message', 'User bien supprimé !');
+        return redirect(route('users.index', ['users' => $users]));
+    }
 }
