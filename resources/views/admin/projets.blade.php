@@ -19,14 +19,35 @@
 					<input type="submit" name="" value="Valider" class="btn btn-info">
 				</form>
 			</div> 
+			@if (Session::has('message'))
+			<div class="alert alert-success">
+				{{ Session::get('message') }}
+			</div>
+			@endif
 		</div>
 	</div>
 	<div id="listeProjets" class="container">
 		<h3>Tous les projets</h3>
-		<ul class="row">
-			@foreach($projets as $projet)
-			<li class="col-md-3"><a href="{{ route('projets.show', ['id' => $projet->id ]) }}">{{ $projet->projetName }}</a></li>
-			@endforeach
-		</ul>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>#</th>
+					<th colspan="2">Nom du projet</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($projets as $projet)
+				<tr>
+					<th>{{ $projet->id }}</th>
+					<td>{{ $projet->projetName }}</td>
+					<td>
+						<a href="" class="btn btn-success">Modifier</a>
+						<a href="{{ route('projets.show', ['id' => $projet->id]) }}" class="btn btn-warning">Consulter</a>
+						<button class="btn btn-info">Supprimer</button>
+					</td>
+				</tr>
+				@endforeach
+			</tbody>
+		</table>
 	</div>
 @endsection 

@@ -1,6 +1,10 @@
 'use strict';
 
 
+function resetValue(form)
+{
+	document.form.reset();
+}
 
 function showNewUserModal()
 {

@@ -19,19 +19,19 @@
 				<button class="btn btn-danger" onclick="closeNewUserModal()">X</button>
 			</span>
 			<br>
-			<form action="#" class="col-md-4 mx-auto" method="post" onsubmit="return false">
+			<form action="" class="col-md-4 mx-auto" method="post" onsubmit="return false">
 				{{ csrf_field() }}
 				<fieldset>
 					<div class="form-group">
-						<input type="text" name="name" value="" placeholder="Nom..." class="form-control" required onkeyup="valideName(this)">
+						<input type="text" name="name" value="" placeholder="Nom..." class="form-control" required id="name" onkeyup="valideName()">
 						<div id="divErrorName"></div>
 					</div>
 					<div class="form-group">
-						<input type="email" name="email" value="" placeholder="E-Mail..." class="form-control" required>
+						<input type="email" name="email" value="" placeholder="E-Mail..." class="form-control" required id="email" onkeyup="valideEmail()">
 						<div id="divErrorMail"></div>
 					</div>
 					<div class="form-group">
-						<input type="password" name="password" value="" placeholder="Mot de passe..." class="form-control" required>
+						<input type="password" name="password" value="" placeholder="Mot de passe..." class="form-control" required id="password" onkeyup="validePassword()">
 						<div id="divErrorPassword"></div>
 					</div>
 					<div class="form-group">
@@ -112,12 +112,13 @@
 	<div class="dialog-modal" id="deleteUserModal">
 		<p>Voulez vous supprimer ?</p>
 		<div>
-			<!-- <button class="btn btn-success" value="oui" onclick="valideDelete(this)">Oui</button> -->
+			@foreach ($users as $user)
 			<form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="post" id="deleteUserForm">
 				{{ method_field('delete') }}
 				{{ csrf_field() }}
 				<input type="submit" name="" value="Oui" class="btn btn-success">
 			</form>
+			@endforeach
 			<button class="btn btn-info" value="non" onclick="valideDelete(this)">Non</button>
 		</div>
 	</div>

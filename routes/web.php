@@ -29,6 +29,10 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function(){
 	Route::resource('projets', 'ProjetController');
 	Route::resource('dashboard', 'IndexController')->only(['index']);
 	Route::resource('users', 'UserController');
+	Route::resource('rubriques' ,'RubriqueController');
+	Route::resource('lignesbudget', 'LigneBudgetController');
+	Route::resource('activites', 'ActiviteController');
+	Route::resource('depenses', 'DepenseController');
 });
 
 Auth::routes();

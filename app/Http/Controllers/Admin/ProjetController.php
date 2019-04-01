@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use App\Projet;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjetRequest;
 
-class ProjetController extends Controller
+class ProjetController extends Controller 
 {
     //
     public function index()
@@ -29,7 +30,9 @@ class ProjetController extends Controller
 
         $projets = DB::table('projets')->get();
 
-        return view('admin.projet.success', ['projets' => $projets, 'message' => 'Ajout réussi avec succès !']);
+        Session::flash('message', 'Projet créé avec succès !');
+
+        return redirect(route('projets.index', ['projets' => $projets]));
 
     }
 
