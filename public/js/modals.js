@@ -37,3 +37,26 @@ function valideDelete(html)
 		}
 }
 
+function showDeleteProjetModal()
+{
+	var modal = document.getElementById('deleteProjetModal');
+	modal.style.display = "block";
+}
+
+function closeDeleteProjetModal()
+{
+	var modal = document.getElementById('deleteProjetModal');
+	modal.style.display = "none";
+}
+
+function showCreateRubriqueModal()
+{
+	var modal = document.getElementById('createNewRubrique');
+	modal.style.display = 'block';
+}
+
+function closeRubriqueModal()
+{
+	var modal = document.getElementById('createNewRubrique');
+	modal.style.display = 'none';
+}

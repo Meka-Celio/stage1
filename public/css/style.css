@@ -1,3 +1,9 @@
+div{
+	margin-bottom: 2%;
+}
+.row{
+	justify-content: space-around;
+}
 .form-modal{
 	background-color: #fff;
 	padding: 20px;
@@ -16,6 +22,7 @@
 .icon-close{
 	position: absolute;
 	right: 0;
+	top: 0;
 }
 
 .dialog-modal{
@@ -40,5 +47,36 @@
 #deleteUserModal div form{
 	display: inline-block;
 	margin: 0 4px;
+}
+
+.frame-modal{
+	background-color: #fff;
+	padding: 15px;
+	min-height:160px;
+	width: 310px; 
+	text-align: center;
+	box-shadow: 1px 2px 5px 1px #000;
+	position: fixed;
+	z-index: 50;
+	border-radius: 5px;
+}
+
+#deleteProjetModal{	
+	left: 600px;
+	display: none;
+}
+
+#createNewRubrique{
+	display: none;
+	top: 190px;
+}
+
+.modal-buttons-space{
+	justify-content: space-around;
+	align-items: center;
+}
+
+.rubrique{
+	padding: 2% 1%;
 }
 

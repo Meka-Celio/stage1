@@ -67,6 +67,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestion de projet</h6>
             <a class="collapse-item" href="{{ route('projets.index') }}">Projets</a>
+            <a class="collapse-item" href="">Rubriques</a>
+            <a class="collapse-item" href="">Lignes Budgetaires</a>
           </div>
         </div>
       </li>
@@ -81,6 +83,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Gestionnaire Activités</h6>
             <a class="collapse-item" href="">Activités</a>
+            <a class="collapse-item" href="">Depenses</a>
           </div>
         </div>
       </li>
@@ -275,6 +278,8 @@
   <!-- Own Scripts  -->
   <script type="text/javascript" src="{{ asset('js/modals.js') }}"></script>
   <script src="{{ asset('js/userForm.js') }}"></script>
+  <script src="{{ asset('js/projets.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/rubriques.js') }}"></script>
 
 </body>
 

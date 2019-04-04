@@ -5,7 +5,7 @@
 	<div id="projet" class="container">
 		<div id="frameProjet" class="frame">
 			<h2>Ajouter un projet</h2>
-			<div class="col-md-8" style="padding: 10px 0;">
+			<div class="" style="padding: 10px 0;">
 				<form action="" method="post" id="formulaire" novalidate="">
 						{{ csrf_field() }}
 					<div class="form-group">
@@ -26,28 +26,17 @@
 			@endif
 		</div>
 	</div>
-	<div id="listeProjets" class="container">
-		<h3>Tous les projets</h3>
-		<table class="table">
-			<thead class="thead-dark">
-				<tr>
-					<th>#</th>
-					<th colspan="2">Nom du projet</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach ($projets as $projet)
-				<tr>
-					<th>{{ $projet->id }}</th>
-					<td>{{ $projet->projetName }}</td>
-					<td>
-						<a href="" class="btn btn-success">Modifier</a>
-						<a href="{{ route('projets.show', ['id' => $projet->id]) }}" class="btn btn-warning">Consulter</a>
-						<button class="btn btn-info">Supprimer</button>
-					</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
+	
+	<!-- Liste des projets -->
+	<h3>Tous les projets</h3>
+	<div class="row">		
+		@foreach ($projets as $projet)
+		<div class="card">
+			<h5 class="card-header bg-success text-light">{{ $projet->projetName }} </h5>
+			<div class="card-body">
+				<a href="" class="btn btn-primary text-center">Consulter</a>
+			</div>
+		</div>
+		@endforeach
 	</div>
 @endsection 

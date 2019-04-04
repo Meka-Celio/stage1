@@ -28,13 +28,13 @@ class UserController extends Controller
     {
     	$validated = $request->validated();
 
-    	// $user = User::create([
-    	// 	'name'	=>	Input::get('name'),
-    	// 	'email' =>	Input::get('email'),
-    	// 	'password' => md5(Input::get('password')),
-    	// 	'fonction' => Input::get('fonction'),
-    	// 	'role'  => Input::get('role')
-    	// ]);
+    	$user = User::create([
+    		'name'	=>	Input::get('name'),
+    		'email' =>	Input::get('email'),
+    		'password' => md5(Input::get('password')),
+    		'fonction' => Input::get('fonction'),
+    		'role'  => Input::get('role')
+    	]);
  
     	$users = DB::table('users')->get();
     	Session::flash('message', 'User ajouté avec succès !');

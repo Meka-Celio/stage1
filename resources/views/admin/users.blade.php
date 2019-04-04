@@ -12,14 +12,14 @@
 	@endif
 	
 	<!-- Formulaire Modal de creation de User -->
-	<div class="form-modal" id="createUserModal">
+	<div class="form-modal " id="createUserModal">
 		<div id="userForm" class="div-modal">
 			<h2 style="text-align:center;">Ajouter un utilisateur</h2>
 			<span class="icon-close">
 				<button class="btn btn-danger" onclick="closeNewUserModal()">X</button>
 			</span>
 			<br>
-			<form action="" class="col-md-4 mx-auto" method="post" onsubmit="return false">
+			<form action="" class="" method="post" onsubmit="return false">
 				{{ csrf_field() }}
 				<fieldset>
 					<div class="form-group">

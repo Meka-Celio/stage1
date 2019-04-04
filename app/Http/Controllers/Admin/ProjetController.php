@@ -40,6 +40,20 @@ class ProjetController extends Controller
     {
         $projet = DB::table('projets')->where('id', $id)->get();
 
-        return view('admin.projet.show', ['projet' => $projet]);
+        $rubriques = DB::table('rubriques')->where('projet_id', $proId)->get();
+
+        return view('admin.projet.showProjet', ['projet' => $projet, 'rubriques' => $rubriques]);
+    }
+
+    public function edit($id)
+    {
+        $projet = DB::table('projets')->where('id', $id)->get();
+
+        return view('admin.projet.editProjet', ['projet' => $projet]);
+    }
+
+    public function update($id)
+    {
+        return "update";
     }
 }
