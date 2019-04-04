@@ -29,14 +29,23 @@
 	
 	<!-- Liste des projets -->
 	<h3>Tous les projets</h3>
-	<div class="row">		
-		@foreach ($projets as $projet)
-		<div class="card">
-			<h5 class="card-header bg-success text-light">{{ $projet->projetName }} </h5>
-			<div class="card-body">
-				<a href="" class="btn btn-primary text-center">Consulter</a>
-			</div>
-		</div>
-		@endforeach
-	</div>
+	<table class="table">
+		<thead class="thead">
+			<tr>
+				<th>#</th>
+				<th colspan="2">Nom du projet</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach($projets as $projet)
+			<tr>
+				<td>{{ $projet->id }}</td>
+				<td>{{ $projet->projetName }} ...</td>
+				<td>
+					<a href="{{ route('projets.show', ['id' => $projet->id]) }}" class="btn btn-success">Consulter</a>
+				</td>
+			</tr>
+			@endforeach
+		</tbody>
+	</table>
 @endsection 

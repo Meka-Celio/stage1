@@ -38,22 +38,30 @@ class ProjetController extends Controller
 
     public function show($id)
     {
-        $projet = DB::table('projets')->where('id', $id)->get();
-
-        $rubriques = DB::table('rubriques')->where('projet_id', $proId)->get();
+        $projet     = DB::table('projets')->where('id', $id)->get();
+        $rubriques  = DB::table('rubriques')->where('projet_id', $id)->get();
 
         return view('admin.projet.showProjet', ['projet' => $projet, 'rubriques' => $rubriques]);
     }
 
     public function edit($id)
     {
-        $projet = DB::table('projets')->where('id', $id)->get();
+        $projet     = DB::table('projets')->where('id', $id)->get();
+        $rubriques  = DB::table('rubriques')->where('projet_id', $id)->get();
 
-        return view('admin.projet.editProjet', ['projet' => $projet]);
+        return view('admin.projet.editProjet', ['projet' => $projet, 'rubriques' => $rubriques]);
     }
 
-    public function update($id)
+    public function update(ProjetRequest $request, $id)
     {
+        $validated = $request->validated();
+
+        // $projet = DB::table('projets')->where('id', $id)->get();
+
+        // Session::flash('message', 'Projet modidié avec succès !');
+
+        // return redirect(route('projets.index', ['projets' => $projets]));
+
         return "update";
     }
 }

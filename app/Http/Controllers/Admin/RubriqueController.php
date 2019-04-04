@@ -11,11 +11,20 @@ use App\Rubrique;
 
 class RubriqueController extends Controller
 {
-	public function index()
+	public function store()
 	{
-		$rubriques = DB::table('rubriques')->get();
-		$projets = DB::table('projets')->get();
+		Rubrique::create([
+			'code'		=>	Input::get('code'),
+			'libelle'	=>	Input::get('libelle'),
+			'projet_id'	=>	Input::get('projet_id')
+		]);
 
-		return view('admin.rubriques', ['rubriques' => $rubriques, 'projets' => $projets]);
+		Session::flash('message', 'Ajout réussi !');
+
+		$rubriques = DB::table('rubriques')->where('projet_id', $_POST['projet_id'])->get();
+
+		return redirect(route('projets.show', ['id' => $_POST['projet_id'], '$rubriques' => $rubriques]));
 	}
+
+	
 }

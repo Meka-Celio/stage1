@@ -27,25 +27,46 @@
 		</span>
 		<br>
 		<br>
-		<div class="row" id="espaceRubriques">
-			@foreach($rubriques as $rubrique)
-			<div class="col-md-3 rubrique">
-				<div class="rubrique-header bg-dark">
-					<p> {{ $rubrique->code }} </p>
-					<p> {{ $rubrique->libelle }} </p>
-				</div>
-				<div class="rubrique-body"></div>
-				<div class="rubrique-footer">
-					<button class="btn btn-info">
-						+
-					</button>
-				</div>
-			</div>
-			@endforeach
+		
+		<!-- Les rubriques -->
+		<div id="rubriques" class="container">
+			<table class="table">
+				<thead class="bg-success text-light">
+					<tr>
+						<th>Code de la rubrique</th>
+						<th>Nom de la rubrique</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($rubriques as $rubrique)
+					<tr>
+						<td>{{ $rubrique->code }}</td>
+						<td>{{ $rubrique->libelle }}</td>
+						<td class="row">
+							<a href="" class="btn btn-info">Consulter</a>
+							<a href="" class="btn btn-warning">Modifier</a>
+							<form action="">
+								<input type="submit" name="" value="Supprimer" class="btn btn-danger">
+							</form>
+						</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
 		</div>
+		<!-- Fin page -->
+
 	</div>
 	<!-- Fin projet -->
 	<br>
+
+	@if (Session::has('message'))
+		<div class="alert alert-success">
+			{{ Session::get('message') }}
+		</div>
+	@endif
+
 	<!-- Modal de creation de rubrique -->
 	<div class="frame-modal" id="createNewRubrique">
 		<div class="div-modal">
@@ -78,6 +99,7 @@
 	<!-- Fin Modal -->
 	<br>
 	<div>
+		<a href="{{ route('projets.edit', ['id' => $pro->id]) }}" class="btn btn-warning">Modifier</a>
 		<button class="btn btn-danger" onclick="showDeleteProjetModal() ">Supprimer le projet</button>
 	</div>
 
