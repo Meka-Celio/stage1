@@ -1,0 +1,36 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html,body{
+	height: 100%;
+	width: 100%;
+}
+
+body{
+	background-color: #b22222;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.space-error{
+	height: 400px;
+	width: 60%;
+	padding: 30px;
+	text-align: center;
+}
+.space-error h1{
+	font-size: 10em;
+}
+
+.space-error p{
+	font-size: 3em;
+}
+
+.text-error{
+	font-family: Calibri;
+	color: #fff;
+	font-style: italic;
+}

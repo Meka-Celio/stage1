@@ -27,7 +27,6 @@ class ProjetController extends Controller
     	$projet = Projet::create([
     		'projetName' => Input::get('projetName')
     	]);
-
         $projets = DB::table('projets')->get();
 
         Session::flash('message', 'Projet créé avec succès !');
@@ -52,16 +51,33 @@ class ProjetController extends Controller
         return view('admin.projet.editProjet', ['projet' => $projet, 'rubriques' => $rubriques]);
     }
 
-    public function update(ProjetRequest $request, $id)
+    public function update($id)
     {
-        $validated = $request->validated();
+        $projet = DB::table('projets')->where('id', $id)->update([
+            'projetName' => Input::get('projetName')
+        ]);
+        $projets = DB::table('projets')->get();
 
-        // $projet = DB::table('projets')->where('id', $id)->get();
+        Session::flash('message', 'Modification réussi !');
 
-        // Session::flash('message', 'Projet modidié avec succès !');
+        return redirect(route('projets.index', ['projets' => $projets]));
+    }
 
-        // return redirect(route('projets.index', ['projets' => $projets]));
+    public function destroy($id)
+    {
+        DB::table('rubriques')->where('projet_id', $id)->delete();
+        $delpro = DB::table('projets')->where('id', $id)->delete();
+        if ($delpro){
 
-        return "update";
+            $projets = DB::table('projets')->get();
+
+            Session::flash('message', 'Projet bien supprimé !');
+
+            return redirect(route('projets.index', ['projets' => $projets]));
+        }
+        else{
+            Session::flash('message', 'Vous ne pouvez pas supprimer une table parent qui a des sous-tables !');
+            return view('errorPage');
+        }
     }
 }

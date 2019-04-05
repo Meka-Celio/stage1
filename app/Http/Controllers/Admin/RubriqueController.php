@@ -26,5 +26,11 @@ class RubriqueController extends Controller
 		return redirect(route('projets.show', ['id' => $_POST['projet_id'], '$rubriques' => $rubriques]));
 	}
 
-	
+	// public function show($id, $projet_id)
+	// {	
+	// 	$projet = DB::table('projets')->where('id',$projet_id)->get();
+	// 	$rubrique = DB::table('rubriques')->where('id', $id)->get();
+
+	// 	return view('admin.rubriques.show_rubrique', ['rubrique' => $rubrique]);
+	// } 
 }

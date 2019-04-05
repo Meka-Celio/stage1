@@ -35,6 +35,7 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function(){
 	Route::resource('depenses', 'DepenseController');
 });
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -9,7 +9,9 @@
 		<div class="delete-modal">
 			<p>Etes-vous sur de supprimer ce projet ?</p>
 			<div class="row modal-buttons-space">
-				<form action="">
+				<form action="{{ route('projets.destroy', ['id' => $pro->id]) }}" method="post" class="form" id="deleteProjetForm">
+					{{ method_field('delete') }}
+					{{csrf_field()}}
 					<input type="submit" name="" value="Oui" class="btn btn-success">
 				</form>
 				<button class="btn-info btn" onclick="closeDeleteProjetModal() ">Non</button>
@@ -43,7 +45,7 @@
 					<tr>
 						<td>{{ $rubrique->code }}</td>
 						<td>{{ $rubrique->libelle }}</td>
-						<td class="row">
+						<td class="">
 							<a href="" class="btn btn-info">Consulter</a>
 							<a href="" class="btn btn-warning">Modifier</a>
 							<form action="">
@@ -55,7 +57,7 @@
 				</tbody>
 			</table>
 		</div>
-		<!-- Fin page -->
+		<!-- Fin rubriques -->
 
 	</div>
 	<!-- Fin projet -->
@@ -97,10 +99,11 @@
 		</div>
 	</div>
 	<!-- Fin Modal -->
+
 	<br>
 	<div>
 		<a href="{{ route('projets.edit', ['id' => $pro->id]) }}" class="btn btn-warning">Modifier</a>
-		<button class="btn btn-danger" onclick="showDeleteProjetModal() ">Supprimer le projet</button>
+		<button class="btn btn-danger" onclick="showDeleteProjetModal()">Supprimer le projet</button>
 	</div>
 
 @endsection

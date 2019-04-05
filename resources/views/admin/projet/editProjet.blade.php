@@ -20,14 +20,14 @@
 
 	<!-- Projet -->
 	<div class="container" id="oneProjet">
-		<form action="{{ route('projets.update', ['id' => $pro->id]) }}" class="form" method="post">
+		<form action="{{ route('projets.update', ['id' => $pro->id]) }}" class="form" method="post" id="updateProjetForm">
 			{{ csrf_field() }}
 			{{ method_field('PUT') }}
 			<fieldset>
 				<legend>Editer un projet</legend>
 				<div class="form-group">
-					<label for="">Nom du projet
-						<input type="text" name="projetName" value="{{ $pro->projetName }}" class="form-control">
+					<label for="projetName">Nom du projet
+						<input type="text" name="projetName" value="{{ $pro->projetName }}" class="form-control" id="projetName">
 					</label>
 				</div>
 				<div class="form-group">
@@ -35,11 +35,9 @@
 				</div>
 			</fieldset>
 		</form>
-		@if($errors->has('projetName'))
-		<ul class="alert alert-danger">
-			<li>{{ $errors->first('projetName') }}</li>
+		<ul class="" id="ulErrorProjet" style="display: none;">
+			<li id="liErrorProjet"></li>
 		</ul>
-		@endif
 		<span>
 			<button class="btn btn-circle btn-success" style="font-size:18px;" id="btnNewRubrique" onclick="showCreateRubriqueModal() ">+</button> 
 			Ajouter une rubrique
