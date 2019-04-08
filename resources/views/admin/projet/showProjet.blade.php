@@ -45,7 +45,7 @@
 					<tr>
 						<td>{{ $rubrique->code }}</td>
 						<td>{{ $rubrique->libelle }}</td>
-						<td class="">
+						<td class="row">
 							<a href="" class="btn btn-info">Consulter</a>
 							<a href="" class="btn btn-warning">Modifier</a>
 							<form action="">

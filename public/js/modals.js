@@ -60,3 +60,16 @@ function closeRubriqueModal()
 	var modal = document.getElementById('createNewRubrique');
 	modal.style.display = 'none';
 }
+
+function showCreateActiviteModal()
+{
+	var modal = document.getElementById('activiteForm');
+	console.log(modal);
+	modal.style.display = 'block';
+}
+
+function closeActiviteModal()
+{
+	var modal = document.getElementById('activiteForm');
+	modal.style.display = 'none';
+}

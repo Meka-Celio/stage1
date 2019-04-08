@@ -277,6 +277,7 @@
   <script src="{{ asset('js/userForm.js') }}"></script>
   <script src="{{ asset('js/projets.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/rubriques.js') }}"></script>
+  <script src="{{ asset('js/activites.js') }}"></script>
 
 </body>
 
