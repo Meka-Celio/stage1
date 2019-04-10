@@ -73,3 +73,15 @@ function closeActiviteModal()
 	var modal = document.getElementById('activiteForm');
 	modal.style.display = 'none';
 }
+
+function showLigneBudgetModal()
+{
+	var modal = document.getElementById('ligneForm');
+	modal.style.height = '330px';
+}
+
+function closeLigneBudgetModal()
+{
+	var modal = document.getElementById('ligneForm');
+	modal.style.height = '0';
+}

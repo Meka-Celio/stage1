@@ -26,11 +26,21 @@ class RubriqueController extends Controller
 		return redirect(route('projets.show', ['id' => $_POST['projet_id'], '$rubriques' => $rubriques]));
 	}
 
-	// public function show($id, $projet_id)
-	// {	
-	// 	$projet = DB::table('projets')->where('id',$projet_id)->get();
-	// 	$rubrique = DB::table('rubriques')->where('id', $id)->get();
+	public function show($id)
+	{
+		$rubrique 		= DB::table('rubriques')->where('id', $id)->get();
+		$projets 		= DB::table('projets')->get();
+		$lignes	= DB::table('lignes')->where('rubrique_id', $id)->get();
 
-	// 	return view('admin.rubriques.show_rubrique', ['rubrique' => $rubrique]);
-	// } 
+		return view('admin.rubriques.show_rubrique', ['rubrique' => $rubrique, 'projets' => $projets, 'lignes' => $lignes]);
+	}
+
+	public function edit($id)
+	{
+		$rubrique 		= DB::table('rubriques')->where('id', $id)->get();
+		$projets 		= DB::table('projets')->get();
+		$lignesbudgets	= DB::table('lignesbudgets')->get();
+
+		return view('admin.rubriques.show_rubrique', ['rubrique' => $rubrique, 'projets' => $projets, 'lignes' => $lignes]);
+	}
 }

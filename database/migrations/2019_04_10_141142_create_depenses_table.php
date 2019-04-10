@@ -14,14 +14,14 @@ class CreateDepensesTable extends Migration
     public function up()
     {
         Schema::create('depenses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nom');
-            $table->float('cout');
-            $table->integer('activite_id')->unsigned();
-            $table->foreign('activite_id')->references('id')->on('activites');
-            $table->integer('lignebudget_id')->unsigned();
-            $table->foreign('lignebudget_id')->references('id')->on('lignesbudgets');
-            $table->timestamps();
+          $table->increments('id');
+          $table->string('nom');
+          $table->float('cout');
+          $table->integer('activite_id')->unsigned();
+          $table->foreign('activite_id')->references('id')->on('activites');
+          $table->integer('ligne_id')->unsigned();
+          $table->foreign('ligne_id')->references('id')->on('lignes');
+          $table->timestamps();
         });
     }
 

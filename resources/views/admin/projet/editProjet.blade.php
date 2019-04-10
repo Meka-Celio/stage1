@@ -61,8 +61,8 @@
 						<td>{{ $rubrique->code }}</td>
 						<td>{{ $rubrique->libelle }}</td>
 						<td class="row">
-							<a href="" class="btn btn-info">Consulter</a>
-							<a href="" class="btn btn-warning">Modifier</a>
+							<a href="{{ route('rubriques.show', ['id' => $rubrique->id]) }}" class="btn btn-info">Consulter</a>
+							<a href="{{ route('rubriques.edit', ['id' => $rubrique->id]) }}" class="btn btn-warning">Modifier</a>
 							<form action="">
 								<input type="submit" name="" value="Supprimer" class="btn btn-danger">
 							</form>

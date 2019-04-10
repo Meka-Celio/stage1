@@ -90,3 +90,12 @@ div{
 	background-color: #cdcdcd;
 	display: none;
 }
+
+.modal-container{
+	padding: 0 8px;
+}
+.modal-container form{
+	/* height: 200px; */
+	height: 0;
+	overflow: hidden;
+}

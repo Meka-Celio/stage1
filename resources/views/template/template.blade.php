@@ -216,7 +216,7 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
+      <footer class="sticky-footer bg-dark">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>Copyright &copy; Your Website 2019</span>
@@ -278,6 +278,7 @@
   <script src="{{ asset('js/projets.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/rubriques.js') }}"></script>
   <script src="{{ asset('js/activites.js') }}"></script>
+  <script src="{{ asset('js/ligne-budget.js') }}"></script>
 
 </body>
 
