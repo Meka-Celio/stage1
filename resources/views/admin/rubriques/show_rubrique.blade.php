@@ -9,11 +9,12 @@
 	@if ($projet->id == $rub->projet_id)
 		<h1>Projet : {{ $projet->projetName }}</h1>
 		<br>
+		<?php $id_projet = $projet->id; ?>
 	@endif
 @endforeach
 
 	<div id="rubrique">
-		<h2>{{ $rub->libelle }}</h2>
+		<h2>Rubrique : {{ $rub->libelle }}</h2>
 		<hr>
 
 		@if (Session::has('message'))
@@ -33,16 +34,21 @@
 			</thead>
 			<tbody>
 				@foreach ($lignes as $ligne)
-				<tr>
-					<td>{{ $ligne->libelle }}</td>
-					<td>{{ $ligne->montant }} DH</td>
-					<td class="row">
-						<a href="#" class="btn btn-warning">Modifier</a>
-						<form class="" action="#" method="post" id="deleteLigneForm">
-							<input type="submit" name="" value="Supprimer" class="btn btn-danger">
-						</form>
-					</td>
-				</tr>
+					@if ($rub->id == $ligne->rubrique_id)
+					<tr>
+						<td>{{ $ligne->libelle }}</td>
+						<td>{{ $ligne->montant }} DH</td>
+						<td class="row">
+							<a href="{{ route('lignes.edit', ['id' => $ligne->id]) }}" class="btn btn-warning">Modifier</a>
+							<form action="{{ route('lignes.destroy', ['id' => $ligne->id]) }}" method="post">
+								{{ method_field('delete') }}
+								{{csrf_field()}}
+								<input type="hidden" name="rubrique_id" value="{{ $ligne->rubrique_id }}">
+								<input type="submit" name="" value="Supprimer" class="btn btn-danger">
+							</form>
+						</td>
+					</tr>
+					@endif
 				@endforeach
 			</tbody>
 		</table>
@@ -75,6 +81,10 @@
 			</form>
 		</div>
 		<!-- Fin modal -->
+		<div>
+			<a href="{{ route('rubriques.edit', ['id' => $rub->id]) }}" class="btn btn-warning">Modifier la rubrique</a>
+			<button class="btn btn-danger">Supprimer la rubrique</button>
+		</div>
 
 	</div>
 

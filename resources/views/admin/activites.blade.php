@@ -1,13 +1,8 @@
 @extends('template.template')
 
 @section('title', 'Activites')
-@section('content')
+@section('content') 
 
-<?php 
-	
-
-	// var_dump($nomProjet);
- ?>
     <div class="container" id="activites">
         <h2>Activites</h2>
         <div class="col-md-2">
@@ -50,10 +45,11 @@
         <!-- Fin de modal -->
 
 		@if (Session::has('message'))
-	<div class="alert alert-info">
-		{{ Session::get('message') }}
-	</div>
-	@endif
+    	<div class="alert alert-info">
+    		{{ Session::get('message') }}
+    	</div>
+    	@endif
+
         <!-- Tableau des activites -->
         <table class="table">
            <thead class="thead">
@@ -74,7 +70,7 @@
 	                    </td>
 	                    <td class="row">
 	                        <a href="{{ route('activites.show', ['id' => $activite->id]) }}" class="btn btn-info">Consulter</a>
-	                        <a href="" class="btn btn-success">Modifer</a>
+	                        <a href="{{ route('activites.edit', ['id' => $activite->id]) }}" class="btn btn-success">Modifer</a>
 	                        <form action="">
 	                            <input type="submit" value="Supprimer" class="btn btn-danger">
 	                        </form>

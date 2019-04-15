@@ -32,8 +32,8 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function(){
 	Route::resource('lignes', 'LigneController')->only(['store','edit','update','destroy']);
 	Route::resource('activites', 'ActiviteController');
 	Route::resource('depenses', 'DepenseController');
+	Route::resource('informations', 'InfoController')->only(['index']);
 });
-
 
 Auth::routes();
 

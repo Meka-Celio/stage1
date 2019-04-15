@@ -63,7 +63,10 @@
 						<td class="row">
 							<a href="{{ route('rubriques.show', ['id' => $rubrique->id]) }}" class="btn btn-info">Consulter</a>
 							<a href="{{ route('rubriques.edit', ['id' => $rubrique->id]) }}" class="btn btn-warning">Modifier</a>
-							<form action="">
+							<form action="{{ route('rubriques.destroy', ['id' => $rubrique->id]) }}" method="post">
+							{{ method_field('DELETE') }}
+							{{csrf_field()}}
+							<input type="hidden" name="projet_id" value="{{ $rubrique->projet_id }}">
 								<input type="submit" name="" value="Supprimer" class="btn btn-danger">
 							</form>
 						</td>

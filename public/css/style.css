@@ -95,7 +95,14 @@ div{
 	padding: 0 8px;
 }
 .modal-container form{
-	/* height: 200px; */
 	height: 0;
 	overflow: hidden;
+}
+
+.modal-block{
+	position: relative;
+}
+.modal-block form{
+	padding: 10px;
+	display: none;
 }

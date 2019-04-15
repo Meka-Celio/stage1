@@ -102,7 +102,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ route('informations.index') }}">
           <i class="fas fa-fw fa-table"></i>
           <span>Informations</span></a>
       </li>
@@ -279,6 +279,8 @@
   <script type="text/javascript" src="{{ asset('js/rubriques.js') }}"></script>
   <script src="{{ asset('js/activites.js') }}"></script>
   <script src="{{ asset('js/ligne-budget.js') }}"></script>
+  <script src="{{ asset('js/rubriques_update.js') }}"></script>
+  <script src="{{ asset('js/activite_edit.js') }}"></script>
 
 </body>
 

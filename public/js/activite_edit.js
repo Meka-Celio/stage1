@@ -1,7 +1,6 @@
 'use strict'
-
-function valideForm(){
-	var form = document.getElementById('activiteForm');
+var form = document.getElementById('activiteForm');
+	
 	form.addEventListener('submit', function(e){
 		
 		var blockError 	= 	document.getElementById('errorNameActivite');
@@ -28,9 +27,3 @@ function valideForm(){
 			e.preventDefault();
 		}
 	});
-}
-
-/////////////////////// Main //////////////////////////
-
-var btnModal = document.getElementById('showModal');
-btnModal.addEventListener('click', valideForm);

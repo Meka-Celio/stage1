@@ -31,7 +31,7 @@ class ProjetRequest extends FormRequest
     public function messages()
     {
         return [
-            'projetName.required'   =>  'Ce champ est requit !'
+            'projetName.required'   =>  'Ce champ est requis !'
         ];
     }
 }

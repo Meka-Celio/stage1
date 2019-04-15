@@ -11,7 +11,7 @@ function validateRubriqueForm()
 	let codeFormat 		= /^[A-Z].[0-9A-Z]+$/;
 	let libelleFormat 	= /^[A-Z].[a-z ]+$/;
 
-	let validation = [0, 0]; 
+	let validation = [0, 0];
 
 	if (!codeFormat.test(Vcode))
 		{
@@ -23,7 +23,7 @@ function validateRubriqueForm()
 				Pcode.appendChild(msgErrorCode);
 			}
 		}
-	else 
+	else
 		{
 			validation[0] = 1;
 			if (Pcode.classList.contains('alert','alert-danger')){
@@ -41,7 +41,7 @@ function validateRubriqueForm()
 				Plibelle.appendChild(msgErrorLib);
 			}
 		}
-	else 
+	else
 		{
 			validation[1] = 1;
 			if (Plibelle.classList.contains('alert', 'alert-danger')){
@@ -53,7 +53,7 @@ function validateRubriqueForm()
 	return validation;
 }
 
-
+// ///////////////// Main ///////////////////////////
 var form = document.getElementById('rubriqueForm');
 
 console.log(form);
@@ -63,11 +63,10 @@ form.addEventListener('submit', function(e){
 	var validation = validateRubriqueForm();
 
 	if (validation[0] != 0 && validation[1] != 0){
-		
+
 	}
 	else{
 		e.preventDefault();
 	}
 
 });
-

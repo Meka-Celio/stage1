@@ -19,7 +19,7 @@ class LigneController extends Controller
       'rubrique_id'	=>	Input::get('rubrique_id')
     ]);
 
-    $lignes     = DB::table('lignes')->where('rubrique_id', $_POST['rubrique_id'])->get();
+    $lignes = DB::table('lignes')->where('rubrique_id', $_POST['rubrique_id'])->get();
     Session::flash('message', 'Ajout réussi !');
 
     return redirect(route('rubriques.show', ['id' => $_POST['rubrique_id'] ,'lignes' => $lignes]));
@@ -27,6 +27,41 @@ class LigneController extends Controller
 
   public function edit($id)
   {
+    $ligne    = DB::table('lignes')->where('id', $id)->get();
+    $projets  = DB::table('projets')->get();
+    $rubrique = DB::table('rubriques')->where('id', $_GET['rubrique_id'])->get();
+
+    return view('admin.lignes.edit_ligne', ['rubrique' => $rubrique ,'ligne' => $ligne, 'projets' => $projets]);
+  }
+
+  public function update($id)
+  {
+    DB::table('lignes')->where('id', $id)->update([
+      'libelle' =>  Input::get('libelle'),
+      'montant' =>  Input::get('montant'),
+      'rubrique_id' =>  Input::get('rubrique_id')
+    ]);
+
+      Session::flash('message', 'Modification réussi !');
+      $lignes = DB::table('lignes')->get();
+
+      return redirect(route('rubriques.show', ['id' => $_POST['rubrique_id'], 'lignes' => $lignes]));
+
+  }
+
+  public function destroy($id)
+  {
+    try{
+      DB::table('lignes')->where('id', $id)->delete();
+      Session::flash('message', 'Suppression réussie !');
+
+      $lignes = DB::table('lignes')->get();
+
+      return redirect(route('rubriques.show', ['id' => $_POST['rubrique_id'], 'lignes' => $lignes]));
+    }
+    catch(Exception $e){
+      echo 'Echec de la suppression '.$e->getMessage();
+    }
 
   }
 

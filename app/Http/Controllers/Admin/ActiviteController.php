@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use App\Activite;
+use App\Ligne;
+use App\Projet;
+use App\Rubrique;
 
 class ActiviteController extends Controller
 {
@@ -22,15 +25,28 @@ class ActiviteController extends Controller
     public function show($id)
     {
     	$activite = DB::table('activites')->where('id', $id)->get();
+        $lignes = DB::table('lignes')->get();
+        $projets    = DB::table('projets')->get();
+        $rubriques = DB::table('rubriques')->get();
 
-    	return view('admin.activite.show', ['activite' => $activite]);
+    	return view('admin.activite.show', ['activite' => $activite, 'lignes' => $lignes, 'projets' => $projets, 'rubriques' => $rubriques]);
     }
  
  	public function edit($id)
     {
+        $activite = DB::table('activites')->where('id', $id)->get();
+        $lignes = DB::table('lignes')->get();
+        $projets    = DB::table('projets')->get();
+        $rubriques = DB::table('rubriques')->get();
 
+        return view('admin.activite.edit', ['activite' => $activite, 'lignes' => $lignes, 'projets' => $projets, 'rubriques' => $rubriques]);
     }
     
+    public function update($id)
+    {
+        
+    }
+
     public function store()
     {
     	Activite::create([
@@ -46,5 +62,5 @@ class ActiviteController extends Controller
     	return redirect(route('activites.index', ['activites' => $activites, 'projets' => $projets]));
     }
 
-   
+
 }
