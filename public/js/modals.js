@@ -1,87 +1,21 @@
 'use strict';
 
+// Modal de projet
 
-function resetValue(form)
+function showModalProjet()
 {
-	document.form.reset();
+	var modalProjet = document.getElementById('modalProjet');
+	modalProjet.style.display = "block";
 }
 
-function showNewUserModal()
-{
-	var modal = document.getElementById('createUserModal');
-	modal.style.top = "40px";
-	var newUser = true;
+function closeModalProjet()
+{	
+	var errorPName = document.getElementById('projetName');
+	var modalProjet = document.getElementById('modalProjet');
+
+	errorPName.innerHTML = "";
+	errorPName.classList.remove('alert', 'alert-danger');
+	modalProjet.style.display = 'none';
 }
 
-function closeNewUserModal()
-{
-	var modal = document.getElementById('createUserModal');
-	modal.style.top = "-800px";
-	var newUser = false;
-}
-
-function showDeleteUserModal()
-{
-	var modal = document.getElementById('deleteUserModal');
-	modal.style.bottom = "35%";
-}
-
-function valideDelete(html)
-{
-	var ouinon = html.getAttribute('value');
-	
-	if (ouinon == 'non')
-		{
-			var modal = document.getElementById('deleteUserModal');
-			modal.style.bottom = "-600px";
-		}
-}
-
-function showDeleteProjetModal()
-{
-	var modal = document.getElementById('deleteProjetModal');
-	modal.style.display = "block";
-}
-
-function closeDeleteProjetModal()
-{
-	var modal = document.getElementById('deleteProjetModal');
-	modal.style.display = "none";
-}
-
-function showCreateRubriqueModal()
-{
-	var modal = document.getElementById('createNewRubrique');
-	modal.style.display = 'block';
-}
-
-function closeRubriqueModal()
-{
-	var modal = document.getElementById('createNewRubrique');
-	modal.style.display = 'none';
-}
-
-function showCreateActiviteModal()
-{
-	var modal = document.getElementById('activiteForm');
-	console.log(modal);
-	modal.style.display = 'block';
-}
-
-function closeActiviteModal()
-{
-	var modal = document.getElementById('activiteForm');
-	modal.style.display = 'none';
-}
-
-function showLigneBudgetModal()
-{
-	var modal = document.getElementById('ligneForm');
-	modal.style.height = '330px';
-}
-
-function closeLigneBudgetModal()
-{
-	var modal = document.getElementById('ligneForm');
-	modal.style.height = '0';
-}
+// Fin modal projet

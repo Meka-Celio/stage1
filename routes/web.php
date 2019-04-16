@@ -29,7 +29,7 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function(){
 	Route::resource('projets', 'ProjetController');
 	Route::resource('users', 'UserController');
 	Route::resource('rubriques' ,'RubriqueController');
-	Route::resource('lignes', 'LigneController')->only(['store','edit','update','destroy']);
+	Route::resource('lignes', 'LigneController');
 	Route::resource('activites', 'ActiviteController');
 	Route::resource('depenses', 'DepenseController');
 	Route::resource('informations', 'InfoController')->only(['index']);

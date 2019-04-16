@@ -52,39 +52,6 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Projets</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Gestion de projet</h6>
-            <a class="collapse-item" href="{{ route('projets.index') }}">Projets</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Activités</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Gestionnaire Activités</h6>
-            <a class="collapse-item" href="{{ route('activites.index') }}">Activités</a>
-          </div>
-        </div>
-      </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
@@ -92,6 +59,36 @@
       <div class="sidebar-heading">
         Addons
       </div>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('projets.index') }}">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Projets</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('rubriques.index') }}">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Rubriques</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Lignes Budgetaires</span></a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('activites.index') }}">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Activités</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Dépenses</span></a>
+      </li>
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
@@ -274,13 +271,13 @@
 
   <!-- Own Scripts  -->
   <script type="text/javascript" src="{{ asset('js/modals.js') }}"></script>
-  <script src="{{ asset('js/userForm.js') }}"></script>
-  <script src="{{ asset('js/projets.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/rubriques.js') }}"></script>
-  <script src="{{ asset('js/activites.js') }}"></script>
-  <script src="{{ asset('js/ligne-budget.js') }}"></script>
-  <script src="{{ asset('js/rubriques_update.js') }}"></script>
-  <script src="{{ asset('js/activite_edit.js') }}"></script>
+  <script src="{{ asset('js/user/userForm.js') }}"></script>
+  <script src="{{ asset('js/projet/projet.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/rubrique/rubrique.js') }}"></script>
+  <script src="{{ asset('js/activite/activite.js') }}"></script>
+  <script src="{{ asset('js/ligne/ligne-budget.js') }}"></script>
+  <script src="{{ asset('js/rubrique/rubrique_update.js') }}"></script>
+  <script src="{{ asset('js/activite/activite_edit.js') }}"></script>
 
 </body>
 

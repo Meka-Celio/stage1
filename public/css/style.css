@@ -1,108 +1,34 @@
-div{
-	margin-bottom: 2%;
-}
 .row{
 	justify-content: space-around;
 }
-.form-modal{
-	background-color: #fff;
-	padding: 20px;
-	border-radius: 15px;
-	box-shadow: 1px 2px 5px 1px #000;
-	width: 80%;
-	position: fixed;
-	z-index: 100;
-	top: -800px;
-	transition: 0.4s;
+div{
+	margin-bottom: 2%;
 }
 
-.form-modal > #userForm{
-	position: relative;
-}
-.icon-close{
-	position: absolute;
-	right: 0;
-	top: 0;
-}
 
-.dialog-modal{
-	height: 160px;
-	width: 310px;
-	background-color: #fff;
-	margin-top: 25px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	box-shadow: 1px 2px 5px 1px #000;
-	margin-bottom: 25px;
-	border-radius: 8px;
-	position: fixed;	
-	bottom: -600px;
-	left: 40%;
-	z-index: 80;
-	transition: .7s;
-	font-size: 18px;
-}
-#deleteUserModal div form{
-	display: inline-block;
-	margin: 0 4px;
-}
-
-.frame-modal{
-	background-color: #fff;
-	padding: 15px;
-	min-height:160px;
-	width: 310px; 
-	text-align: center;
-	box-shadow: 1px 2px 5px 1px #000;
-	border-radius: 5px;
-	position: fixed;
-}
-
-#deleteProjetModal{	
-	left: 600px;
-	display: none;
-}
-
-#createNewRubrique{
-	display: none;
-	top: 190px;
-}
-
-.modal-buttons-space{
-	justify-content: space-around;
-	align-items: center;
-}
-
-.rubrique{
-	padding: 2% 1%;
-}
-
-#activiteModal{
-	position: relative;
-}
-
-#activiteModal form{
-	color: #fff;
-	position: absolute;
-	z-index: 10;
-	background-color: #cdcdcd;
-	display: none;
-}
+/**** Modals ****/
 
 .modal-container{
-	padding: 0 8px;
-}
-.modal-container form{
-	height: 0;
-	overflow: hidden;
-}
-
-.modal-block{
 	position: relative;
-}
-.modal-block form{
-	padding: 10px;
+	border-radius: 0.35rem; 
+	border: 1px solid #1cc88a !important;
 	display: none;
 }
+
+.modal-form{
+	padding: 5px;
+}
+
+.modal-form input, 
+.modal-form select,
+.modal-form textarea{
+	border: 1px solid #1cc88a !important;
+}
+
+.icon-close{
+	position: absolute;
+	right: 1px;
+	top: 1px;
+}
+/* ************* */
+

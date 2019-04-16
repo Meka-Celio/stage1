@@ -4,30 +4,10 @@
 @section('title', $pro->projetName)
 @section('content')
 
-	<!-- Modal de suppression de projet-->
-	<div class="frame-modal" id="deleteProjetModal">
-		<div class="delete-modal">
-			<p>Etes-vous sur de supprimer ce projet ?</p>
-			<div class="row modal-buttons-space">
-				<form action="{{ route('projets.destroy', ['id' => $pro->id]) }}" method="post" class="form" id="deleteProjetForm">
-					{{ method_field('delete') }}
-					{{csrf_field()}}
-					<input type="submit" name="" value="Oui" class="btn btn-success">
-				</form>
-				<button class="btn-info btn" onclick="closeDeleteProjetModal() ">Non</button>
-			</div>
-		</div>
-	</div>
-	<!-- fin Modal -->
-
 	<!-- Projet -->
 	<div class="container" id="oneProjet">
 		<h1>{{ $pro->projetName }}</h1>
-		<span>
-			<button class="btn btn-circle btn-success" style="font-size:18px;" id="btnNewRubrique" onclick="showCreateRubriqueModal() ">+</button> 
-			Ajouter une rubrique
-		</span>
-		<br>
+		
 		<br>
 		
 		<!-- Les rubriques -->
@@ -61,7 +41,12 @@
 			</table>
 		</div>
 		<!-- Fin rubriques -->
-
+		
+		<span>
+			<button class="btn btn-circle btn-success" style="font-size:18px;" id="btnNewRubrique" onclick="showCreateRubriqueModal() ">+</button> 
+			Ajouter une rubrique
+		</span>
+		<br>
 	</div>
 	<!-- Fin projet -->
 	<br>

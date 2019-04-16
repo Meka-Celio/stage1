@@ -11,6 +11,14 @@ use App\Rubrique;
 
 class RubriqueController extends Controller
 {
+	public function index()
+	{
+		$projets 	= 	DB::table('projets')->get();
+		$rubriques	=	DB::table('rubriques')->get();
+
+		return view('admin.rubriques', ['projets' => $projets, 'rubriques' => $rubriques]);
+	}
+
 	public function store()
 	{
 		Rubrique::create([
@@ -21,9 +29,10 @@ class RubriqueController extends Controller
 
 		Session::flash('message', 'Ajout réussi !');
 
-		$rubriques = DB::table('rubriques')->where('projet_id', $_POST['projet_id'])->get();
+		$projets 	= 	DB::table('projets')->get();
+		$rubriques = DB::table('rubriques')->get();
 
-		return redirect(route('projets.show', ['id' => $_POST['projet_id'], '$rubriques' => $rubriques]));
+		return redirect(route('projets.show', ['projets' => $projets, '$rubriques' => $rubriques]));
 	}
 
 	public function show($id)
