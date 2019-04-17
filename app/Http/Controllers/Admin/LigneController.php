@@ -11,6 +11,16 @@ use App\Ligne;
 
 class LigneController extends Controller
 {
+
+  public function index()
+  {
+    $projets    = DB::table('projets')->get();
+    $rubriques  = DB::table('rubriques')->get();
+    $lignes     = DB::table('lignes')->get();
+
+    return view('admin.lignes', ['projets' => $projets, 'rubriques' => $rubriques, 'lignes' => $lignes]);
+  }
+
   public function store()
   {
     Ligne::create([
@@ -19,10 +29,13 @@ class LigneController extends Controller
       'rubrique_id'	=>	Input::get('rubrique_id')
     ]);
 
-    $lignes = DB::table('lignes')->where('rubrique_id', $_POST['rubrique_id'])->get();
+    $projets    = DB::table('projets')->get();
+    $rubriques  = DB::table('rubriques')->get();
+    $lignes     = DB::table('lignes')->get();
+
     Session::flash('message', 'Ajout réussi !');
 
-    return redirect(route('rubriques.show', ['id' => $_POST['rubrique_id'] ,'lignes' => $lignes]));
+    // return view('admin.lignes', ['projets' => $projets, 'rubriques' => $rubriques, 'lignes' => $lignes]);
   }
 
   public function edit($id)

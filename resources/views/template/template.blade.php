@@ -73,7 +73,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ route('lignes.index') }}">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Lignes Budgetaires</span></a>
       </li>
@@ -271,13 +271,27 @@
 
   <!-- Own Scripts  -->
   <script type="text/javascript" src="{{ asset('js/modals.js') }}"></script>
-  <script src="{{ asset('js/user/userForm.js') }}"></script>
+
+  <!-- Projets Scripts -->
   <script src="{{ asset('js/projet/projet.js') }}"></script>
+  <script src="{{ asset('js/projet/compteur_projet.js') }}"></script>
+
+  <!-- Rubriques scripts -->
   <script type="text/javascript" src="{{ asset('js/rubrique/rubrique.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/rubrique/compteur_rubriques.js') }}"></script>
+
+  <!-- Activites Scripts -->
   <script src="{{ asset('js/activite/activite.js') }}"></script>
-  <script src="{{ asset('js/ligne/ligne-budget.js') }}"></script>
-  <script src="{{ asset('js/rubrique/rubrique_update.js') }}"></script>
   <script src="{{ asset('js/activite/activite_edit.js') }}"></script>
+  
+
+  <!-- Lignes scripts -->
+  <script src="{{ asset('js/ligne/ligne-budget.js') }}"></script>
+
+  <!-- Depenses Scripts -->
+  
+  <!-- Users Scripts -->
+  <script src="{{ asset('js/user/userForm.js') }}"></script>
 
 </body>
 

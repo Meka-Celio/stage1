@@ -1,7 +1,6 @@
 'use strict';
 
 // Modal de projet
-
 function showModalProjet()
 {
 	var modalProjet = document.getElementById('modalProjet');
@@ -17,5 +16,18 @@ function closeModalProjet()
 	errorPName.classList.remove('alert', 'alert-danger');
 	modalProjet.style.display = 'none';
 }
-
 // Fin modal projet
+
+// Modal Rubrique
+function showModalRubrique()
+{
+	var modal = document.querySelector('.modal-container');
+	modal.style.display = 'block';
+}
+
+function closeModalRubrique()
+{
+	var modal = document.querySelector('.modal-container');
+	modal.style.display = 'none';
+}
+// Fin Modal rubrique

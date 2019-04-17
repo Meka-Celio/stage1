@@ -32,15 +32,13 @@ class ProjetController extends Controller
         Session::flash('message', 'Projet créé avec succès !');
 
         return redirect(route('projets.index', ['projets' => $projets]));
-
     }
 
     public function show($id)
     {
-        $projet     = DB::table('projets')->where('id', $id)->get();
-        $rubriques  = DB::table('rubriques')->where('projet_id', $id)->get();
-
-        return view('admin.projet.showProjet', ['projet' => $projet, 'rubriques' => $rubriques]);
+        $projet = DB::table('projets')->where('id', $id)->get();
+        
+        return view('admin.projet.showProjet', ['projet' => $projet]);
     }
 
     public function edit($id)
@@ -54,7 +52,8 @@ class ProjetController extends Controller
     public function update($id)
     {
         $projet = DB::table('projets')->where('id', $id)->update([
-            'projetName' => Input::get('projetName')
+            'projetName'    =>  Input::get('projetName'),
+            'updated_at'    =>  date('Y-m-d H-i-s')
         ]);
         $projets = DB::table('projets')->get();
 
@@ -65,7 +64,6 @@ class ProjetController extends Controller
 
     public function destroy($id)
     {
-        DB::table('rubriques')->where('projet_id', $id)->delete();
         $delpro = DB::table('projets')->where('id', $id)->delete();
         if ($delpro){
 

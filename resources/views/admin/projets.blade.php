@@ -12,7 +12,7 @@
 		<!-- Formulaire -->
 		<div class="modal-container col-md-8" id="modalProjet">
 			<div><button class="btn btn-danger icon-close" onclick="closeModalProjet()">X</button></div>
-			<form action="{{ route('projets.store') }}" class="form modal-form" id="projetForm">
+			<form action="{{ route('projets.store') }}" class="form modal-form" id="projetForm" method="post">
 				{{csrf_field()}}
 				<fieldset>
 					<legend>Ajouter Un projet</legend>
@@ -36,6 +36,11 @@
 			</div>
 		@endif
 
+		<div>
+			Il y a : <span id="nombre_projets"></span> projets.
+		</div>
+		<hr>
+
 		<!-- Liste des projets -->
 		<h3>Tous les projets</h3>
 		<table class="table">
@@ -51,7 +56,7 @@
 			</thead>
 			<tbody>
 				@foreach($projets as $projet)
-				<tr>
+				<tr class="projet_row">
 					<td>{{ $projet->id }}</td>
 					<td>{{ $projet->projetName }} ...</td>
 					<td>{{ $projet->created_at }}</td>

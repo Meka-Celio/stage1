@@ -4,46 +4,50 @@
 @section('content')
 
 	<div id="rubriques">
-		
-		
 
 		<!-- Les rubriques -->
 		<section>
 			
 			<span>
-				<button class="btn btn-circle btn-success" style="font-size:18px;" id="btnNewRubrique" onclick="showCreateRubriqueModal() ">+</button> 
+				<button class="btn btn-circle btn-success" style="font-size:18px;" id="btnNewRubrique" onclick="showModalRubrique() ">+</button> 
 				Ajouter une rubrique
 			</span>
 			<br>
-
+			<br>
 			<!-- Modal de creation de rubrique -->
-		<div class="frame-modal" id="createNewRubrique">
-			<div class="div-modal">
-				<span class="icon-close">
-					<button class="btn-danger btn" onclick="closeRubriqueModal()">X</button>
+			<div class="modal-container col-md-8">
+				<span>
+					<button class="btn-danger btn icon-close" onclick="closeModalRubrique()">X</button>
 				</span>
-				<form id="rubriqueForm" class="form col-md-10" method="post" action="{{ route('rubriques.store') }}">
+				<form id="rubriqueForm" class="form col-md-10 modal-form" method="post" action="{{ route('rubriques.store') }}">
 					{{ csrf_field() }}
+					<fieldset>
+						<legend>
+							Nouvelle Rubrique
+						</legend>
+					</fieldset>
 						<div class="form-group">
-							<label for="code">Code de rubrique
-								<input type="text" name="code" value="" placeholder="" class="form-control" id="code">
-								<p id="spaceErrorCode"></p>
-							</label>
+							<input type="text" name="code" value="" placeholder="Code Rubrique" class="form-control" id="code">
 						</div>
+						<ul id="errorCode"></ul>
 						<div class="form-group">
-							<label for="libelle">Nom de la Rubrique
-								<input type="text" name="libelle" value="" placeholder="" class="form-control" id="libelle">
-								<p id="spaceErrorLibelle"></p>
-							</label>
+							<input type="text" name="libelle" value="" placeholder="Nom de la rubrique" class="form-control" id="libelle">
+						</div>
+						<ul id="errorLib"></ul>
+						<div class="form-group">
+							Choix du projet
+							<select name="projet_id" id="projet_id" class="form-control">
+								@foreach ($projets as $projet)
+								<option value="{{ $projet->id }}">{{ $projet->projetName }}</option>
+								@endforeach
+							</select>
 						</div>
 						<div class="form-group">
 							<input type="submit" name="" value="Ajouter" class="btn btn-success">
 							<input type="reset" name="" value="Annuler" class="btn btn-info">
 						</div>
 				</form>
-				
 			</div>
-		</div>
 		<!-- Fin Modal -->
 
 			<br>
@@ -53,8 +57,10 @@
 			</div>
 		@endif
 		
+		
+
 		@foreach($projets as $projet)
-			<div class="card col-md-12">
+			<div class="card col-md-12 projets">
 				<table class="table">
 					<h5 class="card-header bg-white">{{ $projet->projetName }}</h5>
 					<thead class="thead bg-success text-white">
@@ -69,7 +75,7 @@
 					<tbody>
 						@foreach($rubriques as $rubrique)
 							@if($rubrique->projet_id == $projet->id)
-							<tr>
+							<tr class="rubrique_row">
 								<td>{{ $rubrique->code }}</td>
 								<td>{{ $rubrique->libelle }}</td>
 								<td>{{ $rubrique->created_at }}</td>
@@ -89,6 +95,9 @@
 						@endforeach
 					</tbody>
 				</table>
+				<!-- <hr>
+				<p>Nombre de rubriques : <span class="compteur"></span> </p>
+				<hr> -->
 			</div>
 		@endforeach
 
