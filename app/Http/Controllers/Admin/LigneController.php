@@ -26,25 +26,21 @@ class LigneController extends Controller
     Ligne::create([
       'libelle'		=>	Input::get('libelle'),
       'montant'		=>	Input::get('montant'),
-      'rubrique_id'	=>	Input::get('rubrique_id')
+      'rubrique_id'	=>	$_POST['rubrique_id']
     ]);
-
-    $projets    = DB::table('projets')->get();
-    $rubriques  = DB::table('rubriques')->get();
-    $lignes     = DB::table('lignes')->get();
 
     Session::flash('message', 'Ajout réussi !');
 
-    // return view('admin.lignes', ['projets' => $projets, 'rubriques' => $rubriques, 'lignes' => $lignes]);
+    return redirect(route('lignes.index'));
   }
 
   public function edit($id)
   {
     $ligne    = DB::table('lignes')->where('id', $id)->get();
     $projets  = DB::table('projets')->get();
-    $rubrique = DB::table('rubriques')->where('id', $_GET['rubrique_id'])->get();
+    $rubriques = DB::table('rubriques')->get();
 
-    return view('admin.lignes.edit_ligne', ['rubrique' => $rubrique ,'ligne' => $ligne, 'projets' => $projets]);
+    return view('admin.lignes.edit_ligne', ['rubriques' => $rubriques ,'ligne' => $ligne, 'projets' => $projets]);
   }
 
   public function update($id)
@@ -52,29 +48,27 @@ class LigneController extends Controller
     DB::table('lignes')->where('id', $id)->update([
       'libelle' =>  Input::get('libelle'),
       'montant' =>  Input::get('montant'),
-      'rubrique_id' =>  Input::get('rubrique_id')
+      'rubrique_id' =>  Input::get('rubrique_id'),
+      'updated_at'  =>  date('Y-m-d H-i-s')
     ]);
 
-      Session::flash('message', 'Modification réussi !');
-      $lignes = DB::table('lignes')->get();
+    Session::flash('message', 'Modification réussi !');
 
-      return redirect(route('rubriques.show', ['id' => $_POST['rubrique_id'], 'lignes' => $lignes]));
-
+    return redirect(route('lignes.index'));
   }
 
   public function destroy($id)
   {
     try{
       DB::table('lignes')->where('id', $id)->delete();
-      Session::flash('message', 'Suppression réussie !');
-
-      $lignes = DB::table('lignes')->get();
-
-      return redirect(route('rubriques.show', ['id' => $_POST['rubrique_id'], 'lignes' => $lignes]));
     }
     catch(Exception $e){
       echo 'Echec de la suppression '.$e->getMessage();
     }
+
+    Session::flash('message', 'Suppression réussie !');
+
+    return redirect(route('lignes.index'));
 
   }
 

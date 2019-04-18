@@ -1,75 +1,54 @@
 @extends('template.template')
 
-@foreach($rubrique as $rub)
-
-@section('title', $rub->libelle)
+@section('title', 'Lignes-edit')
 @section('content')
 
-@foreach ($projets as $projet)
-	@if ($projet->id == $rub->projet_id)
-		<h1>Projet : {{ $projet->projetName }}</h1>
-		<br>
-	@endif
-@endforeach
-
-	<div id="rubrique">
-		<h2>Rubrique : {{ $rub->libelle }}</h2>
-		<hr>
-
-		@if (Session::has('message'))
-		<div class="alert alert-success">
-			{{ Session::get('message') }}
+<div id="popUp" class="pop-up">
+	<!-- Pop Up de modification -->
+	<div class="container">
+		@foreach($ligne as $l)
+		<div class="pop-up-header col-md-12">
+			<h4>Modifier une Ligne Budgetaire</h4>
 		</div>
-		@endif
-		<!-- Tableau des lignes budgetaires -->
-		<table class="table">
-			<thead class="thead bg-success text-light">
-				<tr>
-					<th>Nom de la ligne</th>
-					<th>Montant</th>
-					<th>Options</th>
-				</tr>
-				<tr></tr>
-			</thead>
-			<tbody>
-				@foreach ($ligne as $l)
-				<tr>
-					<td>{{ $l->libelle }}</td>
-					<td>{{ $l->montant }} DH</td>
-					<td>
-						<!-- Modal de modification de ligneBudgetaire -->
-							<form action="{{ route('lignes.update', ['id' => $l->id]) }}" class="form col-md-10" method="post" id="ligneForm">
-							{{ method_field('put') }}
-								{{ csrf_field() }}
-								<div class="form-group">
-									<input type="text" class="form-control" id="libelle" name="libelle" placeholder="* Nom de la ligne" value="{{ $l->libelle }}">
-								</div>
-								<ul id="errorLigneLibelle"></ul>
-								<div class="form-group">
-									<input type="number" class="form-control" step="0.01" id="montant" name="montant" placeholder="* Montant Alloué" value="{{ $l->montant }}">
-								</div>
-								<ul id="errorLigneMontant"></ul>
-								<input type="hidden" name="rubrique_id" value="{{ $rub->id }}">
-								<div class="form-group">
-									<input type="submit" name="" value="Valider" class="btn btn-info">
-									<input type="reset" name="" value="Annuler" class="btn btn-success">
-								</div>
-							</form>
-						<!-- Fin modal -->
-					</td>
-				</tr>
-				@endforeach
-			</tbody>
-		</table>
+		<div class="pop-up-section col-md-12">
+			<form action="{{ route('lignes.update',['id' => $l->id]) }}" class="form col-md-12 modal-form" method="post" id="ligneEditFormulaire_e">
+				{{method_field('put')}}
+					{{csrf_field()}}
+					<div class="form-group">
+						<label for="libelle">Nom de la ligne</label>
+						<input type="text" name="libelle" value="{{ $l->libelle }}" placeholder="" class="form-control" id="libelle_e">
+					</div>
+					
+					<!-- ErrorLib -->
+					<ul id="errorLigneLibelle_e"></ul>
 
-		
-		<div>
-			<a href="{{ route('rubriques.edit', ['id' => $rub->id]) }}" class="btn btn-warning">Modifier la rubrique</a>
-			<button class="btn btn-danger">Supprimer la rubrique</button>
+					<div class="form-group">
+						<label for="montant">Montant Alloué</label>
+						<input type="number" name="montant" value="{{ $l->montant }}" placeholder="" class="form-control" step="0.01" id="montant_e">
+					</div>
+
+					<!-- ErrorMontant -->
+					<ul id="errorLigneMontant_e"></ul>
+
+					<div class="form-group">
+						<label for="rubrique_id">Rubrique</label>
+						<select name="rubrique_id" id="rubrique_id" class="form-control">
+							@foreach($rubriques as $rubrique)
+							<option value="{{ $rubrique->id }}">{{ $rubrique->libelle }}</option>
+							@endforeach
+						</select>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-warning">Mise à jour</button>
+						<a href="{{ route('lignes.index') }}" class="btn btn-info">Annuler</a>
+					</div>
+				</form>
 		</div>
-
+		<div class="pop-up-footer col-md-12">
+			<small class="pop-up bottom-right-text">Dernière modification : {{ $l->updated_at }}</small>
+		</div>
+		@endforeach
 	</div>
-
+<!-- Fin de popup -->
+</div>
 @endsection
-
-@endforeach

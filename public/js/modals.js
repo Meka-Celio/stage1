@@ -31,3 +31,17 @@ function closeModalRubrique()
 	modal.style.display = 'none';
 }
 // Fin Modal rubrique
+
+// Modal Ligne
+function showModalLigne()
+{
+	var modal = document.querySelector('.modal-container');
+	modal.style.display = 'block';
+}
+
+function closeModalLigne()
+{
+	var modal = document.querySelector('.modal-container');
+	modal.style.display = 'none';
+}
+// Fin modal ligne

@@ -278,7 +278,6 @@
 
   <!-- Rubriques scripts -->
   <script type="text/javascript" src="{{ asset('js/rubrique/rubrique.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('js/rubrique/compteur_rubriques.js') }}"></script>
 
   <!-- Activites Scripts -->
   <script src="{{ asset('js/activite/activite.js') }}"></script>
@@ -287,6 +286,8 @@
 
   <!-- Lignes scripts -->
   <script src="{{ asset('js/ligne/ligne-budget.js') }}"></script>
+  <script src="{{ asset('js/ligne/edit-ligne.js') }}"></script>
+  <script src="{{ asset('js/ligne/popup-ligne.js') }}"></script>
 
   <!-- Depenses Scripts -->
   

@@ -1,18 +1,18 @@
 'use strict';
 
 // //////////////// MAIN ///////////////////
-var form = document.querySelector('#ligneFormulaire');
-
+var form = document.querySelector('#ligneEditFormulaire_e');
+console.log(form);
 	form.addEventListener('submit', function(e){
 		
-		var errorLibelle = document.getElementById('errorLigneLibelle');
-		var errorMontant = document.querySelector('#errorLigneMontant');
+		var errorLibelle = document.getElementById('errorLigneLibelle_e');
+		var errorMontant = document.querySelector('#errorLigneMontant_e');
 
 		var regexLib	= /^[A-Z].[A-Za-z]+$/;
 		var chiffre	= -1;
 
-		var vLib 		= document.querySelector('#libelle').value.trim();
-		var vMontant 	= document.getElementById('montant').value.trim();
+		var vLib 		= document.querySelector('#libelle_e').value.trim();
+		var vMontant 	= document.getElementById('montant_e').value.trim();
 
 		var ok1 = false;
 		var ok2 = false;

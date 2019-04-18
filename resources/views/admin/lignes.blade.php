@@ -1,38 +1,40 @@
 @extends('template.template')
 
-@section('title', 'Rubriques')
+@section('title', 'Lignes')
 @section('content')
 
 	<div id="lignes">
 		<h2>Lignes Budgetaires</h2> 
-		<button class="btn btn-success btn-circle">+</button>
+		<button class="btn btn-success btn-circle" onclick="showModalLigne()">+</button>
 		<hr>
 
 		<!-- Modal de creation de Ligne -->
 		<div class="modal-container col-md-8">
 			<span>
-				<button class="btn btn-danger icon-close">X</button>
+				<button class="btn btn-danger icon-close" onclick="closeModalLigne()">X</button>
 			</span>
-			<form action="" class="form col-md-12 modal-form">
+			<br>
+			<form action="{{ route('lignes.store') }}" class="form col-md-12 modal-form" method="post" id="ligneFormulaire">
+				{{csrf_field()}}
 				<fieldset>
 					<legend>Nouvelle Ligne</legend>
 					<br>
 				</fieldset>
 				<div class="form-group">
 					<label for="libelle">Nom de la ligne</label>
-					<input type="text" name="libelle" value="" placeholder="" class="form-control">
+					<input type="text" name="libelle" value="" placeholder="" class="form-control" id="libelle">
 				</div>
 				
 				<!-- ErrorLib -->
-				<ul id="errorLibelle"></ul>
+				<ul id="errorLigneLibelle"></ul>
 
 				<div class="form-group">
 					<label for="montant">Montant Alloué</label>
-					<input type="number" name="montant" value="" placeholder="" class="form-control" step="0.01">
+					<input type="number" name="montant" value="" placeholder="" class="form-control" step="0.01" id="montant">
 				</div>
 
 				<!-- ErrorMontant -->
-				<ul id="errorMontant"></ul>
+				<ul id="errorLigneMontant"></ul>
 
 				<div class="form-group">
 					<label for="rubrique_id">Rubrique</label>
@@ -43,12 +45,19 @@
 					</select>
 				</div>
 				<div class="form-group">
-					<input type="submit" name="" value="Valider" class="btn btn-success">
+					<button class="btn btn-success">Valider</button>
 					<input type="reset" name="" value="Annuler" class="btn btn-info">
 				</div>
 			</form>
 		</div>
 		<!-- Fin modal -->
+
+		<br>
+		@if (Session::has('message'))
+			<div class="alert alert-success">
+				{{ Session::get('message') }}
+			</div>
+		@endif
 		
 		@foreach($projets as $projet)
 		<!-- Bloc lignes budgetaires -->
@@ -107,9 +116,11 @@
 											{{ $ligne->updated_at }}
 										</td>
 										<td class="row">
-											<a href="" class="btn btn-success">/</a>
-											<form action="">
-												<input type="submit" name="" value="-" class="btn btn-success">
+											<a href="{{ route('lignes.edit', ['id' => $ligne->id]) }}" class="btn btn-warning btn-edit" id="btnEditLigne_{{ $ligne->id }}">/</a>
+											<form action="{{ route('lignes.destroy', ['id' => $ligne->id]) }}" method="post">
+												{{ method_field('delete') }}
+												{{csrf_field()}}
+												<input type="submit" name="" value="-" class="btn btn-danger">
 											</form>
 										</td>
 									</tr>

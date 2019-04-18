@@ -32,3 +32,14 @@ div{
 }
 /* ************* */
 
+/* Pop-Up */
+.pop-up{
+	background-color: #d4e7da;
+	border-radius: 8px;
+}
+.pop-up > div{
+	position:  relative;
+	padding: 10px 5px;
+}
+
+/* *************** */
