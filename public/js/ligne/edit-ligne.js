@@ -20,7 +20,7 @@ console.log(form);
 		if (!regexLib.test(vLib))
 			{
 				errorLibelle.classList.add('alert', 'alert-danger');
-				errorLibelle.innerHTML = "<li>Le nom doit commencer par une majuscule, et avoir au moins 2 caractères !</li>";
+				errorLibelle.innerHTML = "<li>Le nom doit commencer par une majuscule, et avoir au moins 3 caractères !</li>";
 			}
 		else{
 				errorLibelle.classList.remove('alert', 'alert-danger');

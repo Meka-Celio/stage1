@@ -1,8 +1,10 @@
 'use strict';
 
 var nbr_projets = document.querySelectorAll('.projet_row');
-var affiche		= document.getElementById('nombre_projets');
-var nbr 		= nbr_projets.length;
+var affiches	= document.querySelectorAll('.affiche');
 
-affiche.innerHTML = ""+nbr ;
-
+for (var c=0; c<nbr_projets.length; c++)
+	{
+		var aff = affiches[c];
+		aff.innerHTML = c+1;
+	}

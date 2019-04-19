@@ -25,26 +25,31 @@ class ActiviteController extends Controller
     public function show($id)
     {
     	$activite = DB::table('activites')->where('id', $id)->get();
-        $lignes = DB::table('lignes')->get();
         $projets    = DB::table('projets')->get();
-        $rubriques = DB::table('rubriques')->get();
 
-    	return view('admin.activite.show', ['activite' => $activite, 'lignes' => $lignes, 'projets' => $projets, 'rubriques' => $rubriques]);
+    	return view('admin.activite.show', ['activite' => $activite, 'projets' => $projets]);
     }
  
  	public function edit($id)
     {
         $activite = DB::table('activites')->where('id', $id)->get();
-        $lignes = DB::table('lignes')->get();
         $projets    = DB::table('projets')->get();
-        $rubriques = DB::table('rubriques')->get();
+        $activites = DB::table('activites')->get();
 
-        return view('admin.activite.edit', ['activite' => $activite, 'lignes' => $lignes, 'projets' => $projets, 'rubriques' => $rubriques]);
+        return view('admin.activite.edit', ['activite' => $activite, 'projets' => $projets, 'activites' => $activites]);
     }
     
     public function update($id)
     {
-        
+        DB::table('activites')->where('id', $id)->update([
+            'nom'           =>  Input::get('nom'),
+            'projet_id'     =>  Input::get('projet_id'),
+            'updated_at'    =>  date('Y-m-d H-i-s')
+        ]);
+
+        Session::flash('message', 'Modification réussi !');
+
+        return redirect(route('activites.index'));
     }
 
     public function store()
@@ -62,5 +67,12 @@ class ActiviteController extends Controller
     	return redirect(route('activites.index', ['activites' => $activites, 'projets' => $projets]));
     }
 
+    public function destroy($id)
+    {
+        DB::table('activites')->where('id',$id)->delete();
 
+        Session::flash('message', 'Suppréssion réussie !');
+
+        return redirect(route('activites.index'));
+    }
 }

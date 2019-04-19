@@ -5,20 +5,12 @@
 
     <div class="container" id="activites">
         <h2>Activites</h2>
-        <div class="col-md-2">
-	        	<button class="btn btn-circle btn-lg btn-success" onclick="showCreateActiviteModal()" id="showModal">
-	        		<i class="fas fa-plus" ></i>
-	        	</button>
-        	</div>
 		<hr>
         <!-- Modal de creation d'activite -->
         <div id="block-activite">
             <div id="activiteModal">
                 <form action="{{ route('activites.store') }}" method="post" class="form formulaire col-md-8" id="activiteForm">
                 	{{ csrf_field() }}
-	                <span class="icon-close">
-						<button class="btn btn-danger" onclick="closeActiviteModal()" type="button">X</button>
-					</span>
                     <fieldset>
                         <legend>Nouvelle Activite</legend>
                         <div class="form-group">
@@ -56,6 +48,8 @@
                 <tr>
                     <th>Nom de l'activite</th>
                     <th>Nom du projet</th>
+                    <th>Date de création</th>
+                    <th>Dernière Modification</th>
                     <th>Options</th>
                 </tr>
             </thead>
@@ -68,11 +62,16 @@
 	                    <td>
 	                    	{{ $projet->projetName }}
 	                    </td>
+                        <td>{{ $activite->created_at }}</td>
+                        <td>{{ $activite->updated_at }}</td>
 	                    <td class="row">
-	                        <a href="{{ route('activites.show', ['id' => $activite->id]) }}" class="btn btn-info">Consulter</a>
-	                        <a href="{{ route('activites.edit', ['id' => $activite->id]) }}" class="btn btn-success">Modifer</a>
-	                        <form action="">
-	                            <input type="submit" value="Supprimer" class="btn btn-danger">
+	                        <a href="{{ route('activites.show', ['id' => $activite->id]) }}" class="btn btn-success">O</a>
+	                        <a href="{{ route('activites.edit', ['id' => $activite->id]) }}" class="btn btn-warning">/</a>
+	                        <form action="{{ route('activites.destroy', ['id' => $activite->id]) }}" method="post" class="form">
+                                {{method_field('delete')}}
+                                {{csrf_field()}}
+
+	                            <input type="submit" value="-" class="btn btn-danger">
 	                        </form>
 	                    </td>
 	                </tr>

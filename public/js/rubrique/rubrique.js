@@ -53,7 +53,7 @@ form.addEventListener('submit', function(e){
 			if (!libelleFormat.test(Vlibelle))
 				{
 					errorLib.classList.add('alert', 'alert-danger');
-					errorLib.innerHTML = 'Format non respecté, doit commencer par une majuscule et au moins 2 lettres !';
+					errorLib.innerHTML = 'Format non respecté, doit commencer par une majuscule et au moins 3 lettres !';
 					
 				}
 			else

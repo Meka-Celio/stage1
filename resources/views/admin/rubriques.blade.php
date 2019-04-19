@@ -65,6 +65,7 @@
 					<h5 class="card-header bg-white">{{ $projet->projetName }}</h5>
 					<thead class="thead bg-success text-white">
 						<tr>
+							<th>#</th>
 							<th>Code de la rubrique</th>
 							<th>Nom de la rubrique</th>
 							<th>Date de création</th>
@@ -76,6 +77,7 @@
 						@foreach($rubriques as $rubrique)
 							@if($rubrique->projet_id == $projet->id)
 							<tr class="rubrique_row">
+								<td class="affiche-r"></td>
 								<td>{{ $rubrique->code }}</td>
 								<td>{{ $rubrique->libelle }}</td>
 								<td>{{ $rubrique->created_at }}</td>

@@ -36,11 +36,6 @@
 			</div>
 		@endif
 
-		<div>
-			Il y a : <span id="nombre_projets"></span> projets.
-		</div>
-		<hr>
-
 		<!-- Liste des projets -->
 		<h3>Tous les projets</h3>
 		<table class="table">
@@ -57,7 +52,7 @@
 			<tbody>
 				@foreach($projets as $projet)
 				<tr class="projet_row">
-					<td>{{ $projet->id }}</td>
+					<td class="affiche"></td>
 					<td>{{ $projet->projetName }} ...</td>
 					<td>{{ $projet->created_at }}</td>
 					<td>{{ $projet->updated_at }}</td>

@@ -85,7 +85,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="{{ route('depenses.index') }}">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Dépenses</span></a>
       </li>
@@ -278,6 +278,7 @@
 
   <!-- Rubriques scripts -->
   <script type="text/javascript" src="{{ asset('js/rubrique/rubrique.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/rubrique/compteur_rubriques.js') }}"></script>
 
   <!-- Activites Scripts -->
   <script src="{{ asset('js/activite/activite.js') }}"></script>
@@ -290,6 +291,7 @@
   <script src="{{ asset('js/ligne/popup-ligne.js') }}"></script>
 
   <!-- Depenses Scripts -->
+  <script src="{{ asset('js/depense/depense.js') }}"></script>
   
   <!-- Users Scripts -->
   <script src="{{ asset('js/user/userForm.js') }}"></script>
