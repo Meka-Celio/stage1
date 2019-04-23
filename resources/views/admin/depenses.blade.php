@@ -52,8 +52,8 @@
 	<table class="table">
 		<thead class="thead bg-success text-white">
 			<tr>
-				<th>Nom de la dépense</th>
-				<th>Cout de la dépense</th>
+				<th>Nom</th>
+				<th>Cout</th>
 				<th>Activité</th>
 				<th>Ligne budgetaire</th>
 				<th>Date de création</th>
@@ -74,8 +74,11 @@
 							<td>{{ $depense->created_at }}</td>
 							<td>{{ $depense->updated_at }}</td>
 							<td class="row">
-								<a href="" class="btn btn-warning">/</a>
-								<form action="">
+								<a href="{{ route('depenses.edit', ['id' => $depense->id]) }}" class="btn btn-warning">/</a>
+								.
+								<form action="{{ route('depenses.destroy', ['id' => $depense->id]) }}" method="post">
+									{{method_field('delete')}}
+									{{csrf_field()}}
 									<input type="submit" name="" value="-" class="btn btn-danger">
 								</form>
 							</td>

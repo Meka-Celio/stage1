@@ -11,6 +11,11 @@ use App\Rubrique;
 
 class RubriqueController extends Controller
 {
+	public function __construct(){
+
+        $this->middleware('auth');
+    }
+	
 	public function index()
 	{
 		$projets 	= 	DB::table('projets')->get();

@@ -15,6 +15,12 @@
 //     return view('welcome');
 // });
 
+
+Route::get('/dashboard', [
+	'as'	=> 	'admin/dashboard',
+	'uses'	=>	'Admin\IndexController@index'	
+]);
+
 Route::get('/', [
     'as'    =>  'index',
     'uses'  =>  'GuestController@index'
@@ -34,6 +40,7 @@ Route::group(['namespace' => 'admin', 'prefix' => 'admin'], function(){
 	Route::resource('depenses', 'DepenseController');
 	Route::resource('informations', 'InfoController')->only(['index']);
 });
+
 
 Auth::routes();
 

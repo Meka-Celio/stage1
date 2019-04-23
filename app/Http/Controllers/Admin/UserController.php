@@ -13,6 +13,11 @@ use App\User;
 
 class UserController extends Controller
 {
+    public function __construct(){
+
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
 		$users = DB::table('users')->get();
@@ -31,7 +36,7 @@ class UserController extends Controller
     	$user = User::create([
     		'name'	=>	Input::get('name'),
     		'email' =>	Input::get('email'),
-    		'password' => md5(Input::get('password')),
+    		'password' => bcrypt(Input::get('password')),
     		'fonction' => Input::get('fonction'),
     		'role'  => Input::get('role')
     	]);
@@ -56,8 +61,6 @@ class UserController extends Controller
     	$user = DB::table('users')->where('id', $id)
     	->update([
     		'name'	=>	Input::get('name'),
-    		'email' =>	Input::get('email'),
-    		'password' => md5(Input::get('password')),
     		'fonction' => Input::get('fonction'),
     		'role'  => Input::get('role')
     	]);
@@ -72,7 +75,8 @@ class UserController extends Controller
     {
         $user = DB::table('users')->where('id', $id)->delete();
         $users = DB::table('users')->get();
-        // Session::flash('message', 'User bien supprimé !');
+        
+        Session::flash('message', 'User bien supprimé !');
         return redirect(route('users.index', ['users' => $users]));
     }
 }

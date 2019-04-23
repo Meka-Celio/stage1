@@ -15,11 +15,8 @@
 	<div class="form-modal " id="createUserModal">
 		<div id="userForm" class="div-modal">
 			<h2 style="text-align:center;">Ajouter un utilisateur</h2>
-			<span class="icon-close">
-				<button class="btn btn-danger" onclick="closeNewUserModal()">X</button>
-			</span>
 			<br>
-			<form action="" class="" method="post" onsubmit="return false">
+			<form action="{{ route('register') }}" class="" method="post" onsubmit="return false">
 				{{ csrf_field() }}
 				<fieldset>
 					<div class="form-group">
@@ -107,20 +104,4 @@
 	<div>
 		<button class="btn btn-info" onclick="showNewUserModal()">Ajouter un utilisateur</button>
 	</div>
-
-	<!-- Pop Up de Suppression -->
-	<div class="dialog-modal" id="deleteUserModal">
-		<p>Voulez vous supprimer ?</p>
-		<div>
-			@foreach ($users as $user)
-			<form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="post" id="deleteUserForm">
-				{{ method_field('delete') }}
-				{{ csrf_field() }}
-				<input type="submit" name="" value="Oui" class="btn btn-success">
-			</form>
-			@endforeach
-			<button class="btn btn-info" value="non" onclick="valideDelete(this)">Non</button>
-		</div>
-	</div>
-	<!-- Fin de pop-up -->
 @endsection

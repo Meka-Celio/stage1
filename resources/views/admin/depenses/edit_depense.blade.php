@@ -7,8 +7,8 @@
 	
 	@foreach($depense as $dep)
 	<!-- Modal de dépense -->
-	<form action="" class="form col-md-8" method="post" id="depenseForm">
-		{{method_field()}}
+	<form action="{{ route('depenses.update', ['id' => $dep->id]) }}" class="form col-md-8" method="post" id="depenseForm">
+		{{method_field('put')}}
 		{{ csrf_field() }}
 		<fieldset>
 			<legend>Modifier une Dépense</legend>
@@ -37,7 +37,7 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<input type="submit" name="" value="Ajouter" class="btn btn-success">
+				<input type="submit" name="" value="Màj" class="btn btn-warning">
 				<input type="reset" name="" value="Annuler" class="btn btn-info">
 			</div>
 		</fieldset>
@@ -55,8 +55,8 @@
 	<table class="table">
 		<thead class="thead bg-success text-white">
 			<tr>
-				<th>Nom de la dépense</th>
-				<th>Cout de la dépense</th>
+				<th>Nom</th>
+				<th>Cout</th>
 				<th>Activité</th>
 				<th>Ligne budgetaire</th>
 				<th>Date de création</th>
@@ -77,8 +77,11 @@
 							<td>{{ $depense->created_at }}</td>
 							<td>{{ $depense->updated_at }}</td>
 							<td class="row">
-								<a href="" class="btn btn-warning">/</a>
-								<form action="">
+								<a href="{{ route('depenses.edit', ['id' => $depense->id]) }}" class="btn btn-warning">/</a>
+								.
+								<form action="{{ route('depenses.destroy', ['id' => $depense->id]) }}" method="post">
+									{{method_field('delete')}}
+									{{csrf_field()}}
 									<input type="submit" name="" value="-" class="btn btn-danger">
 								</form>
 							</td>

@@ -12,6 +12,10 @@ use App\Ligne;
 class LigneController extends Controller
 {
 
+  public function __construct(){
+
+    $this->middleware('auth');
+  }
   public function index()
   {
     $projets    = DB::table('projets')->get();

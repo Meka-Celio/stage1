@@ -1,5 +1,6 @@
 'use strict'
 
+
 // ---------MAIN-----------//
 
 var form  = document.getElementById('depenseForm');
@@ -45,5 +46,9 @@ form.addEventListener('submit', function(e){
 		}
 	}
 
-	e.preventDefault();
+	if (ok0 == 0 || ok1 == 0)
+		{
+			e.preventDefault();
+		}
+	else{}
 })

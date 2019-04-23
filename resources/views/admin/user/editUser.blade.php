@@ -18,16 +18,7 @@
 					@endif
 				</div>
 				<div class="form-group">
-					<input type="email" name="email" value="{{ $u->email }}" placeholder="E-Mail..." class="form-control">
-					@if($errors->has('email'))
-						<div class="alert alert-warning">{{ $errors->first('email') }}</div>
-					@endif
-				</div>
-				<div class="form-group">
-					<input type="password" name="password" value="" placeholder="Mot de passe..." class="form-control">
-					@if($errors->has('password'))
-						<div class="alert alert-warning">{{ $errors->first('password') }}</div>
-					@endif
+					<label for="" class="form-label">{{ $u->email }}</label>
 				</div>
 				<div class="form-group">
 					<select name="fonction" id="fonction" class="form-control">

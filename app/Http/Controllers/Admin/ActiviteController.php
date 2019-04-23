@@ -14,6 +14,11 @@ use App\Rubrique;
 
 class ActiviteController extends Controller
 {
+    public function __construct(){
+
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
     	$activites 	= DB::table('activites')->get();

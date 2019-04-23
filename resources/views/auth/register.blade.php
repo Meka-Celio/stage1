@@ -13,7 +13,7 @@
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
- 
+
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
@@ -62,6 +62,31 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="fonction" class="col-md-4 control-label">Fonction</label>
+
+                            <div class="col-md-6">
+                                <select name="fonction" id="fonction" class="form-control">
+                                <option value="developpeur">Developpeur</option>
+                                <option value="integrateur">Integrateur</option>
+                                <option value="graphiste">Graphiste</option>
+                                <option value="chef_projet">Chef de Projet</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="" class="col-md-4 control-label">Role</label>
+
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="role" value="admin" placeholder="" class="form-check-input" id="roleA">
+                                <label for="roleA" class="form-check-label">Admin</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="role" value="user" placeholder="" class="form-check-input" id="roleB" checked>
+                                <label for="roleB" class="form-check-label">User</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
@@ -74,4 +99,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endsection 
