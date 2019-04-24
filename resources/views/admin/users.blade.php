@@ -3,8 +3,8 @@
 
 @section('title', 'Users')
 @section('content')
-	<h2>Users</h2>
-	<br>
+	<h2>Utilisateurs</h2>
+	<hr>
 	@if (Session::has('message'))
 	<div class="alert alert-success">
 		{{ Session::get('message') }}
@@ -12,11 +12,11 @@
 	@endif
 	
 	<!-- Formulaire Modal de creation de User -->
-	<div class="form-modal " id="createUserModal">
+<!-- 	<div class="form-modal" >
 		<div id="userForm" class="div-modal">
 			<h2 style="text-align:center;">Ajouter un utilisateur</h2>
 			<br>
-			<form action="{{ route('register') }}" class="" method="post" onsubmit="return false">
+			<form action="{{ route('register') }}" class="col-md-8" method="post" id="formUser">
 				{{ csrf_field() }}
 				<fieldset>
 					<div class="form-group">
@@ -49,11 +49,11 @@
 					</div>
 				</fieldset>
 				<br>
-				<input type="submit" name="" value="Créer un utilisateur" class="btn-info btn">
+				<input type="submit" name="" value="+" class="btn-info btn">
 				<input type="reset" name="" value="Annuler" class="btn btn-success">
 			</form>
 		</div>
-	</div>
+	</div> -->
 	<!-- Fin de formulaireModal -->
 
 	<!-- Tableau des utilisateurs -->
@@ -89,9 +89,13 @@
 						@endif
 
 						<td>{{ $user->role }}</td>
-						<td>
-							<a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-success">Modifier</a>
-							<button class="btn btn-info" onclick="showDeleteUserModal()">Supprimer</button>
+						<td class="row">
+							<a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-warning">/</a>
+							<form action="{{ route('users.destroy', ['id' => $user->id]) }}" method="post">
+								{{method_field('delete')}}
+								{{csrf_field()}}
+								<input type="submit" name="" value="-" class="btn btn-danger">
+							</form>
 						</td>
 					</tr>
 				@endforeach
@@ -100,8 +104,5 @@
 			<p>Il n'y a aucun utilisateurs pour le moment</p>
 			@endif
 		</table>		
-	</div>
-	<div>
-		<button class="btn btn-info" onclick="showNewUserModal()">Ajouter un utilisateur</button>
 	</div>
 @endsection

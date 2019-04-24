@@ -4,7 +4,8 @@
 @section('content')
 
 	<div id="rubriques">
-
+		<h2>Rubriques</h2>
+		<hr>
 		<!-- Les rubriques -->
 		<section>
 			

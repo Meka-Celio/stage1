@@ -4,7 +4,8 @@
 @section('content') 
 
 <div id="depenses">
-	
+	<h2>Dépenses</h2>
+	<hr>
 	<!-- Modal de dépense -->
 	<form action="{{ route('depenses.store') }}" class="form col-md-8" method="post" id="depenseForm">
 		{{ csrf_field() }}

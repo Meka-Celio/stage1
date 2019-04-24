@@ -1,7 +1,9 @@
-@extends('layouts.app')
+@extends('template.zoning')
+
+@section('title', 'Register')
 
 @section('content')
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -98,5 +100,118 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Créer un compte</h1>
+              </div>
+
+              <div class="panel-body">
+                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                        {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-8 control-label">Nom d'utilisateur</label>
+
+                            <div class="col-md-12">
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label for="email" class="col-md-4 control-label">E-Mail</label>
+
+                            <div class="col-md-12">
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password" class="col-md-8 control-label">Mot de passe</label>
+
+                            <div class="col-md-12">
+                                <input id="password" type="password" class="form-control" name="password" required>
+
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-8 control-label">Confirmation mot de passe</label>
+
+                            <div class="col-md-12">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fonction" class="col-md-4 control-label">Fonction</label>
+
+                            <div class="col-md-12">
+                                <select name="fonction" id="fonction" class="form-control">
+                                <option value="developpeur">Developpeur</option>
+                                <option value="integrateur">Integrateur</option>
+                                <option value="graphiste">Graphiste</option>
+                                <option value="chef_projet">Chef de Projet</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class=" form-group">
+                            <label for="" class="col-md-4 control-label">Role</label>
+
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="role" value="admin" placeholder="" class="form-check-input" id="roleA">
+                                <label for="roleA" class="form-check-label">Admin</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="role" value="user" placeholder="" class="form-check-input" id="roleB" checked>
+                                <label for="roleB" class="form-check-label">User</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 col-md-offset-4">
+                                <button type="submit" class="btn btn-info btn-block">
+                                    S'enregistrer
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+              <hr>
+              <div class="text-center">
+                <a class="small" href="{{ route('password.request') }}">Mot de passe oublié ?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="{{ route('login') }}">Connectez-vous !</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 @endsection 

@@ -29,23 +29,7 @@ class UserController extends Controller
     	return view('admin.user.createUser');
     }
 
-    public function store(UserRequest $request)
-    {
-    	$validated = $request->validated();
-
-    	$user = User::create([
-    		'name'	=>	Input::get('name'),
-    		'email' =>	Input::get('email'),
-    		'password' => bcrypt(Input::get('password')),
-    		'fonction' => Input::get('fonction'),
-    		'role'  => Input::get('role')
-    	]);
- 
-    	$users = DB::table('users')->get();
-    	Session::flash('message', 'User ajouté avec succès !');
-
-    	return redirect(route('users.index', ['users' => $users]));
-    }
+    
 
     public function edit($id)
     {
@@ -54,29 +38,54 @@ class UserController extends Controller
     	return view('admin.user.editUser', ['user' => $user]);
     }
 
-    public function update(UserRequest $request, $id)
+    public function update($id)
     {
-    	$validated = $request->validated();
+    	if (Auth::user()->role == 'user')
+        {
+            DB::table('users')->where('id', $id)->update([
+                'name'  =>  Input::get('name')
+            ]);
+            Session::flash('message', 'User modifié avec succès !');
 
-    	$user = DB::table('users')->where('id', $id)
-    	->update([
-    		'name'	=>	Input::get('name'),
-    		'fonction' => Input::get('fonction'),
-    		'role'  => Input::get('role')
-    	]);
+            return redirect(route('users.index'));
+        }
+        else{
+            DB::table('users')->where('id', $id)->update([
+             'name'     =>  Input::get('name'),
+             'fonction' => Input::get('fonction'),
+             'role'     => Input::get('role')
+            ]);
 
-    	$users = DB::table('users')->get();
-    	Session::flash('message', 'User modifié avec succès !');
+            Session::flash('message', 'User modifié avec succès !');
 
-    	return redirect(route('users.index', ['users' => $users]));
+            return redirect(route('users.index'));
+        }
     }
 
     public function destroy($id)
     {
-        $user = DB::table('users')->where('id', $id)->delete();
-        $users = DB::table('users')->get();
-        
-        Session::flash('message', 'User bien supprimé !');
-        return redirect(route('users.index', ['users' => $users]));
+        $session_id = Auth::user()->id;
+        $user = DB::table('users')->where('id', $id)->get();
+
+        foreach ($user as $u)
+        {
+            if ($u->id == $session_id)
+            {
+                Session::flash('message', 'Vous ne pouvez pas vous supprimer vous-même !');
+                return redirect(route('users.index'));
+            }
+            else{
+                if (Auth::user()->role == 'user')
+                {
+                    Session::flash('message', 'Seul les admins peuvent supprimer des utilisateurs !');
+                    return redirect(route('users.index'));
+                }
+                else{
+                    DB::table('users')->where('id', $id)->delete();
+                    Session::flash('message', 'User bien supprimé !');
+                    return redirect(route('users.index'));
+                }
+            }
+        }
     }
 }

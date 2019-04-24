@@ -4,7 +4,8 @@
 @section('content')
 
 	<div id="projets">
-		
+		<h2>Projets</h2>
+		<hr>
 		<!-- Modal Projet -->
 		<div>
 			<button class="btn btn-success btn-circle" onclick="showModalProjet()">+</button><span> Nouveau Projet</span>

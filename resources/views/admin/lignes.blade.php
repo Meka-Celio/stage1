@@ -5,8 +5,9 @@
 
 	<div id="lignes">
 		<h2>Lignes Budgetaires</h2> 
-		<button class="btn btn-success btn-circle" onclick="showModalLigne()">+</button>
 		<hr>
+		<button class="btn btn-success btn-circle" onclick="showModalLigne()">+</button>
+		
 
 		<!-- Modal de creation de Ligne -->
 		<div class="modal-container col-md-8">

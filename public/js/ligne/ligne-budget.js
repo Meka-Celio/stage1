@@ -8,7 +8,7 @@ var form = document.querySelector('#ligneFormulaire');
 		var errorLibelle = document.getElementById('errorLigneLibelle');
 		var errorMontant = document.querySelector('#errorLigneMontant');
 
-		var regexLib	= /^[A-Z].[A-Za-z]+$/;
+		var regexLib	= /^[A-Z].[A-Za-z ]+$/;
 		var chiffre	= -1;
 
 		var vLib 		= document.querySelector('#libelle').value.trim();
